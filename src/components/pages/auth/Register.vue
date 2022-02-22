@@ -11,10 +11,9 @@
         @dismiss="registerErrors.message = ''"
       />
 
-      <div
-        class="flex flex-col md:flex-row justify-between md:space-x-4 lg:mb-4"
-      >
+      <div class="flex flex-col md:flex-row md:space-x-4 lg:mb-4">
         <FormInput
+          class="flex-1 mb-4 lg:mb-0"
           rules="required|min:3|max:30"
           :placeholder="$t('FirstName')"
           v-model.trim="user.firstName"
@@ -22,6 +21,7 @@
         />
 
         <FormInput
+          class="flex-1 mb-4 lg:mb-0"
           rules="required|max:30"
           :placeholder="$t('LastName')"
           v-model.trim="user.lastName"
@@ -72,13 +72,7 @@
 
     <p class="mt-4">
       <router-link
-        class="
-          text-sm
-          font-medium
-          text-purple-600
-          dark:text-purple-400
-          hover:underline
-        "
+        class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
         :to="{ name: 'login' }"
       >
         {{ $t("Already have an account? Login") }}

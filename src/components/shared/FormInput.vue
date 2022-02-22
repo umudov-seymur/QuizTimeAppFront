@@ -11,18 +11,9 @@
       <span class="text-red-600">{{ required ? " *" : "" }}</span>
 
       <input
-        class="
-          block
-          w-full
-          mt-1
-          text-sm
-          form-input
-          dark:text-gray-300 dark:bg-gray-700
-          focus:outline-none
-        "
+        class="block w-full mt-1 text-sm form-input dark:text-gray-300 dark:bg-gray-700 focus:outline-none"
         :class="{
-          'dark:border-gray-600 focus:border-purple-400 focus:shadow-outline-purple dark:focus:shadow-outline-gray':
-            !errors[0],
+          'dark:border-gray-600 focus:border-purple-400 focus:shadow-outline-purple dark:focus:shadow-outline-gray':!errors[0],
           'border-red-600 focus:border-red-400 focus:shadow-outline-red':
             errors[0],
           'has-value': hasValue,

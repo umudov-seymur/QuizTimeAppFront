@@ -1,10 +1,14 @@
 <template>
-  <h2>Home</h2>
+  <Container>
+    <div class="py-10">Home</div>
+  </Container>
 </template>
 
 <script>
-export default {};
-</script>
+import Container from "@/components/shared/Container";
 
-<style lang="scss" scoped>
-</style>
+export default {
+  name: "Home",
+  components: { Container },
+};
+</script>

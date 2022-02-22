@@ -14,7 +14,7 @@ const router = new Router({
       path: "/",
       name: "Home",
       component: Home,
-      meta: { authorize: [Role.Teacher, Role.Student] },
+      // meta: { authorize: [Role.Teacher, Role.Student] },
     },
     {
       path: "/auth",
@@ -66,4 +66,5 @@ router.beforeEach((to, from, next) => {
 
   next();
 });
+
 export default router;

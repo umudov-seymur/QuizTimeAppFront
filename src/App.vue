@@ -1,8 +1,14 @@
 <template>
   <div id="app">
-    <AppHeader />
-    <router-view />
-    <AppFooter />
+    <div class="flex h-screen bg-gray-50 dark:bg-gray-900">
+      <div class="flex flex-col flex-1 w-full">
+        <AppHeader />
+        <transition name="fade" mode="out-in">
+          <router-view />
+        </transition>
+        <AppFooter />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -20,20 +26,25 @@ export default {
   components: {
     // LanguageSwitcher,
     AppFooter,
-    AppHeader,
-  },
+    AppHeader
+},
 };
 </script>
 
-<style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+<style>
+/* @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 
+body {
+  font-family: "Quicksand", sans-serif;
+} */
 
-// .v-application {
-//   [class*="text-"] {
-//     color: #36405a;
-//     font-family: $font-family, sans-serif !important;
-//   }
-//   font-family: $font-family, sans-serif !important;
-// }
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>

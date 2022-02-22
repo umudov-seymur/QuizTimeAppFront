@@ -67,8 +67,12 @@ export default {
         email: "",
         password: "",
       },
+      returnUrl: "/dashboard",
       isLoading: false,
     };
+  },
+  created() {
+    this.returnUrl = this.$route.query.returnUrl || "/";
   },
   methods: {
     login() {
@@ -78,7 +82,7 @@ export default {
         .dispatch("auth/login", this.$data.credentials)
         .then(() => {
           this.authErrors.message = "";
-          console.log("logged in");
+          this.$router.push(this.returnUrl);
         })
         .catch((errorResponse) => {
           this.authErrors.message = errorResponse.message;

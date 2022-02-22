@@ -1,15 +1,18 @@
 {
     "Login": "Daxil ol",
     "Email": "Email",
+    "Log out": "Çıxış",
     "FirstName": "Ad",
     "LastName": "Soyad",
     "Register": "Qeydiyyatdan keç",
     "Password": "Şifrə",
-    "Create Account": "Hesab yarat",
+    "Create Account": "Hesabınız yoxdur? Yeni hesab yarat.",
     "Role": {
         "Student": "Tələbə",
         "Teacher": "Müəllim"
     },
+    "Log in" : "Daxil ol",
+    "Sign Up" : "Qeydiyyat",
     "Already have an account? Login": "Artıq bir hesabınız var mı? Daxil ol",
     "Not Found": "Səhifə tapılmadı"
 }
