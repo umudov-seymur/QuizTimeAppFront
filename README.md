@@ -1,4 +1,4 @@
-# quiz-tiem
+# Quiz Time App
 
 ## Project setup
 ```
