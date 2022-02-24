@@ -8,6 +8,9 @@ import { store } from "@/store/index";
 import "@/plugins/veevalidate";
 import "@/plugins/sweetAlert";
 
+// animate css
+import 'animate.css';
+
 // tailwind css
 import "./assets/index.css";
 

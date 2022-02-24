@@ -1,15 +1,17 @@
 <template>
-  <div class="wrapper404">
-    <div class="header404">404</div>
-    <div class="message404">Page not found</div>
-    <div class="image404">
-      <img
-        src="https://static.classtime.com/www/images/not-found.3b8be064f0c0.png"
-        role="presentation"
-      />
+ <div class="flex items-center mx-auto justify-center my-auto">
+    <div class="wrapper404">
+      <div class="header404">404</div>
+      <div class="message404">Page not found</div>
+      <div class="image404">
+        <img
+          src="https://static.classtime.com/www/images/not-found.3b8be064f0c0.png"
+          role="presentation"
+        />
+      </div>
+      <div style="height: 5.5rem"></div>
     </div>
-    <div style="height: 5.5rem"></div>
-  </div>
+ </div>
 </template>
 
 <script>
@@ -24,17 +26,13 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper404 {
-  min-height: 100%;
   position: relative;
-  margin-bottom: -5.5rem;
-  margin-top: -5.5rem;
-  padding-top: 7rem;
 }
 
 .header404 {
   text-align: center;
   font-size: 96px;
-  color: #eceff1;
+  @apply text-purple-500;
   text-shadow: 2px 2px #8ba1ab;
   font-weight: 900;
   width: 100%;

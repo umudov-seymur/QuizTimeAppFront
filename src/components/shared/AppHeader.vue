@@ -1,14 +1,14 @@
 <template>
-  <nav class="flex items-center justify-between flex-wrap bg-purple-500 py-6">
-    <Container>
+  <header class="sticky top-0 w-full z-10 shadow bg-purple-500">
+    <Container class="py-3">
       <div class="flex w-full items-center flex-shrink-0 text-white mr-6">
-        <div class>
+        <div class="logo">
           <router-link to="/" class="font-extrabold text-2xl tracking-tight">
             QuizTime
           </router-link>
         </div>
 
-        <div class="w-full justify-end flex items-center">
+        <div class="w-full flex justify-end items-center">
           <div class="flex items-center space-x-4" v-if="!isLoggedIn">
             <router-link
               class="block mt-0 lg:inline-block font-semibold text-white hover:text-white"
@@ -17,14 +17,28 @@
               {{ $t("Log in") }}
             </router-link>
 
-            <span>/</span>
+            <span class="font-bold">/</span>
 
-            <router-link
-              class="flex items-center justify-between px-4 py-2 font-medium leading-5 text-white transition-colors duration-150 bg-dark-200 border border-transparent rounded-sm focus:outline-none hover:bg-purple-600 shadow-outline-purple"
-              :to="{ name: 'register' }"
-            >
-              {{ $t("Sign Up") }}
-            </router-link>
+            <span class="relative inline-flex rounded-md shadow-sm">
+              <router-link
+                class="flex items-center justify-between px-4 py-2 font-medium leading-5 text-white transition-colors duration-150 bg-dark-200 border border-transparent rounded-sm focus:outline-none hover:bg-purple-600 shadow-outline-purple"
+                :to="{ name: 'register' }"
+              >
+                {{ $t("Sign Up") }}
+              </router-link>
+
+              <span
+                class="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1 pointer-events-none"
+              >
+                <span
+                  class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-200 opacity-75"
+                >
+                </span>
+                <span
+                  class="relative inline-flex rounded-full h-3 w-3 bg-purple-300"
+                ></span>
+              </span>
+            </span>
           </div>
 
           <div class="relative" v-else>
@@ -37,7 +51,7 @@
                 :username="getFullName"
                 class="cursor-pointer"
                 :size="40"
-              ></avatar>
+              />
             </button>
 
             <ul
@@ -118,7 +132,9 @@
         </div>
       </div>
     </Container>
-  </nav>
+
+    <Navbar />
+  </header>
 </template>
 
 <script>
@@ -126,11 +142,12 @@ import Container from "@/components/shared/Container.vue";
 import Avatar from "vue-avatar";
 import { mixin as clickaway } from "vue-clickaway";
 import { mapGetters } from "vuex";
+import Navbar from "@/components/shared/Navbar.vue";
 
 export default {
   name: "AppHeader",
   mixins: [clickaway],
-  components: { Container, Avatar },
+  components: { Container, Avatar, Navbar },
   data() {
     return {
       isProfileMenuOpen: false,

@@ -1,11 +1,17 @@
 <template>
   <div id="app">
-    <div class="flex h-screen bg-gray-50 dark:bg-gray-900">
-      <div class="flex flex-col flex-1 w-full">
+    <div class="main flex h-screen bg-gray-50 dark:bg-gray-900">
+      <div class="flex flex-col flex-1 w-full z-10">
         <AppHeader />
-        <transition name="fade" mode="out-in">
+
+        <transition
+          enter-active-class="animate__animated animate__fadeIn"
+          leave-active-class="animate__animated animate__fadeOut"
+          mode="out-in"
+        >
           <router-view />
         </transition>
+
         <AppFooter />
       </div>
     </div>
@@ -26,25 +32,31 @@ export default {
   components: {
     // LanguageSwitcher,
     AppFooter,
-    AppHeader
-},
+    AppHeader,
+  },
 };
 </script>
 
-<style>
+<style lang="scss">
 /* @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 
 body {
   font-family: "Quicksand", sans-serif;
 } */
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
-}
+#app {
+  .main {
+    &::before {
+      position: relative;
+      z-index: 10;
 
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: url("assets/images/background.png");
+      opacity: 0.1;
+    }
+  }
 }
 </style>

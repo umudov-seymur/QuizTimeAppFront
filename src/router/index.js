@@ -12,7 +12,11 @@ const router = new Router({
   routes: [
     {
       path: "/",
-      name: "Home",
+      redirect: "/home"
+    },
+    {
+      path: "/home",
+      name: "home",
       component: Home,
       // meta: { authorize: [Role.Teacher, Role.Student] },
     },
