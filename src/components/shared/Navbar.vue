@@ -63,7 +63,11 @@
           </router-link>
         </li>
         <li>
-          <router-link to="/test" custom v-slot="{ href, navigate, isActive }">
+          <router-link
+            :to="{ name: 'categories' }"
+            custom
+            v-slot="{ href, navigate, isActive }"
+          >
             <NavLink
               :href="href"
               @click="navigate"
@@ -137,9 +141,9 @@
               placeholder="Quiz şifrəsi"
             />
             <button
-              class="flex cursor-pointer absolute inset-y-0 focus:outline-none right-0 items-center rounded-tr-sm rounded-br bg-purple-500 hover:bg-purple-400  text-white font-bold p-3"
+              class="flex cursor-pointer absolute inset-y-0 focus:outline-none right-0 items-center rounded-tr-sm rounded-br bg-purple-500 hover:bg-purple-400 text-white font-bold p-3"
             >
-             {{ $t("Join") }}
+              {{ $t("Join") }}
             </button>
           </div>
         </li>

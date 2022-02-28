@@ -32,7 +32,7 @@
           <FormInput
             class="mt-4"
             type="text"
-            rules="required|min:6|max:100"
+            rules="required|alpha_num|min:6|max:16"
             placeholder="***************"
             @input="filterQuizPassword"
             @keydown.space.prevent
@@ -64,13 +64,23 @@
             </template>
           </FormInput>
 
+          <FormSelect
+            class="mt-4"
+            :name="$t('Category')"
+            v-model="quiz.categoryId"
+            rules="required"
+            :items="categories"
+          />
+
           <FormInput
             type="number"
             class="mt-4"
             rules="numeric|between:1,1440"
             helperText="Əgər vaxtın təyin olunmasını istəmirsinizsə boş buraxın"
             placeholder="ex: 60 dəqiqə"
+            min="1"
             v-model.number="quiz.timer"
+            @input="($value) => (quiz.timer = parseInt($value) || null)"
             :name="$t('Quiz.Timer')"
           >
           </FormInput>
@@ -112,8 +122,10 @@
 <script>
 import Container from "@/components/shared/Container.vue";
 import FormInput from "@/components/shared/FormInput";
+import FormSelect from "@/components/shared/FormSelect.vue";
 import Button from "@/components/shared/Button";
 import { genPassword } from "@/helpers/utils";
+import { mapActions } from "vuex";
 
 export default {
   name: "AddQuiz",
@@ -123,11 +135,24 @@ export default {
       quiz: {
         name: "",
         password: "",
-        timer: "",
-      },
+        timer: null,
+        categoryId: "",
+      }
     };
   },
+  computed: {
+    categories() {
+      const categories = this.$store.getters["category/getCategories"];
+      return categories.map((category) => {
+        return {
+          id: category.id,
+          text: category.name,
+        };
+      });
+    },
+  },
   methods: {
+    ...mapActions("category", ["fetchCategories"]),
     setQuizPassword() {
       this.quiz.password = genPassword(6);
     },
@@ -139,33 +164,42 @@ export default {
 
       this.$store
         .dispatch("quiz/addQuiz", this.quiz)
+        .then((res) => {
+          this.$swal({
+            toast: true,
+            position: "top-right",
+            showConfirmButton: false,
+            icon: "success",
+            title: res.message,
+            timer: 5000,
+            timerProgressBar: true,
+          });
+
+          this.$router.push({ name: "quizzes" });
+        })
+        .catch((error) => {
+          this.$swal({
+            toast: true,
+            position: "top-right",
+            showConfirmButton: false,
+            icon: "error",
+            title: error.message,
+            timer: 5000,
+            timerProgressBar: true,
+          });
+        })
         .finally(() => (this.isLoading = false));
     },
   },
   created() {
+    this.fetchCategories();
     this.setQuizPassword();
   },
-  //   beforeRouteLeave(to, from, next) {
-  //     this.$swal({
-  //       title: this.$t("Are you sure?"),
-  //       text: this.$t("Do you really want to leave? you have unsaved changes!"),
-  //       icon: "warning",
-  //       showCancelButton: true,
-  //       confirmButtonColor: "#3085d6",
-  //       cancelButtonColor: "#d33",
-  //       confirmButtonText: "Bəli",
-  //     }).then((result) => {
-  //       if (!result.isConfirmed) return next(false);
-  //       return next();
-  //     });
-  //   },
   metaInfo() {
     return {
       title: this.$t("Add New Quiz"),
     };
   },
-  components: { Container, Button, FormInput },
+  components: { Container, Button, FormInput, FormSelect },
 };
 </script>
-
-<style lang="scss" scoped></style>

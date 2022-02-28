@@ -22,7 +22,7 @@
         :key="i"
         @click="changeLang(lang)"
         :classes="{
-          'px-3' : true,
+          'px-3': true,
           'bg-purple-500 text-white': lang == $i18n.locale,
         }"
       >
@@ -40,7 +40,7 @@ export default {
   name: "LanguageSwitcher",
   data() {
     return {
-      langs: ["az", "en"],
+      langs: process.env.VUE_APP_I18N_SUPPORTED_LOCALE.split(","),
     };
   },
   methods: {

@@ -30,5 +30,7 @@
         "Timer": "Quiz bitmə vaxtı"
     },
     "Close": "Ləğv et",
-    "Save": "Yadda saxla"
+    "Save": "Yadda saxla",
+    "Category": "Kateqoriya",
+    "Please Select": "Zəhmət olmasa {name} seçin"
 }

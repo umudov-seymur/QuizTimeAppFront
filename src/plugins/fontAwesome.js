@@ -8,10 +8,11 @@ import {
   faPlus,
   faSave,
   faClose,
+  faRefresh,
 } from "@fortawesome/free-solid-svg-icons";
 
 /* add icons to the library */
-library.add(faUserSecret, faPlus, faSave, faClose);
+library.add(faUserSecret, faPlus, faSave, faClose, faRefresh);
 
 /* import font awesome icon component */
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";

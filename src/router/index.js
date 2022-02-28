@@ -43,6 +43,12 @@ const router = new Router({
       component: () => import("@/components/pages/quiz/QuizList"),
     },
     {
+      path: "/categories",
+      name: "categories",
+      meta: { authorize: [Role.Teacher] },
+      component: () => import("@/components/pages/categories/CategoryList"),
+    },
+    {
       path: "/quizzes/create",
       name: "quizzes.create",
       meta: { authorize: [Role.Teacher] },

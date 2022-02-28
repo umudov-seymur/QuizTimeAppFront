@@ -28,9 +28,15 @@ export default {
   },
   actions: {
     addQuiz({ commit }, quiz) {
-      QuizService.createQuiz(quiz).then((data) => {
-        commit("SET_QUIZZES", data);
-      });
+      return QuizService.createQuiz(quiz).then(
+        (response) => {
+          commit("SET_QUIZZES", quiz);
+          return Promise.resolve(response.data);
+        },
+        (error) => {
+          return Promise.reject(error.response.data);
+        }
+      );
     },
   },
 };
