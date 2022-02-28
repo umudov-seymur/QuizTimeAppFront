@@ -1,3 +1,24 @@
 {
- 
+    "Home" : "Home",
+    "Login": "Login",
+    "Email": "Email",
+    "Log out": "Log out",
+    "FirstName": "First name",
+    "LastName": "Last name",
+    "Register": "Register",
+    "Password": "Password",
+    "Create Account": "Hesabınız yoxdur? Yeni hesab yarat.",
+    "Role": {
+        "Student": "Student",
+        "Teacher": "Teacher"
+    },
+    "Log in" : "Daxil ol",
+    "Sign Up" : "Qeydiyyat",
+    "Already have an account? Login": "Artıq bir hesabınız var mı? Daxil ol",
+    "Not Found": "Səhifə tapılmadı",
+    "Quizzes" : "Quizlər",
+    "Categories" : "Kateqoriyalar",
+    "Settings" : "Hesab Parametrləri",
+    "Results" : "Nəticələr",
+    "Join" : "Qoşul"
 }

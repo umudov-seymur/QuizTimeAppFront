@@ -1,4 +1,5 @@
 {
+    "Home": "Ana səhifə",
     "Login": "Daxil ol",
     "Email": "Email",
     "Log out": "Çıxış",
@@ -11,12 +12,23 @@
         "Student": "Tələbə",
         "Teacher": "Müəllim"
     },
-    "Log in" : "Daxil ol",
-    "Sign Up" : "Qeydiyyat",
+    "Log in": "Daxil ol",
+    "Sign Up": "Qeydiyyat",
+    "Are you sure?": "Əminsinizmi ?",
     "Already have an account? Login": "Artıq bir hesabınız var mı? Daxil ol",
+    "Do you really want to leave? you have unsaved changes!": "Həqiqətən ayrılmaq istəyirsən? yadda saxlanmamış dəyişiklikləriniz var!",
     "Not Found": "Səhifə tapılmadı",
-    "Quizzes" : "Quizlər",
-    "Categories" : "Kateqoriyalar",
-    "Settings" : "Hesab Parametrləri",
-    "Results" : "Nəticələr"
+    "Quizzes": "Quizlər",
+    "Add New Quiz": "Yeni quiz əlavə et",
+    "Categories": "Kateqoriyalar",
+    "Settings": "Hesab Parametrləri",
+    "Results": "Nəticələr",
+    "Join": "Qoşul",
+    "Quiz": {
+        "Name": "Quiz adı",
+        "Password": "Quiz şifrəsi",
+        "Timer": "Quiz bitmə vaxtı"
+    },
+    "Close": "Ləğv et",
+    "Save": "Yadda saxla"
 }

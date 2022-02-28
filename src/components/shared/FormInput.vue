@@ -10,21 +10,34 @@
       <span class="text-gray-700 dark:text-gray-400">{{ label || name }}</span>
       <span class="text-red-600">{{ required ? " *" : "" }}</span>
 
-      <input
-        class="block w-full mt-1 text-sm form-input dark:text-gray-300 dark:bg-gray-700 focus:outline-none"
-        :class="{
-          'dark:border-gray-600 focus:border-purple-400 focus:shadow-outline-purple dark:focus:shadow-outline-gray':!errors[0],
-          'border-red-600 focus:border-red-400 focus:shadow-outline-red':
-            errors[0],
-          'has-value': hasValue,
-        }"
-        :id="name"
-        :type="type"
-        :placeholder="placeholder"
-        ref="input"
-        v-model="innerValue"
-        v-bind="ariaInput"
-      />
+      <div class="relative">
+        <input
+          class="block w-full mt-1 text-sm form-input dark:text-gray-300 dark:bg-gray-700 focus:outline-none"
+          :class="{
+            'dark:border-gray-600 focus:border-purple-400 focus:shadow-outline-purple dark:focus:shadow-outline-gray':
+              !errors[0],
+            'border-red-600 focus:border-red-400 focus:shadow-outline-red':
+              errors[0],
+            'has-value': hasValue,
+          }"
+          :id="name"
+          :type="type"
+          :placeholder="placeholder"
+          ref="input"
+          v-on="$listeners"
+          v-model="innerValue"
+          v-bind="ariaInput"
+        />
+
+        <slot name="append" />
+      </div>
+
+      <span
+        class="text-xs text-gray-600 dark:text-gray-400"
+        v-if="!errors[0] && helperText.length > 0"
+      >
+        {{ helperText }}
+      </span>
     </label>
 
     <ValidationErrorBox v-if="errors[0]" v-bind="ariaMsg">
@@ -53,6 +66,10 @@ export default {
       default: "",
     },
     label: {
+      type: String,
+      default: "",
+    },
+    helperText: {
       type: String,
       default: "",
     },

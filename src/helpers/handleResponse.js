@@ -1,7 +1,7 @@
-import AuthService from "@/api/auth.service";
+import AuthService from "@/services/auth.service";
 
 export function handleResponse(response) {
-  if ([401, 403].indexOf(response.status) !== -1) {
+  if ([401].indexOf(response.status) !== -1) {
     AuthService.logout();
     location.reload(true);
 

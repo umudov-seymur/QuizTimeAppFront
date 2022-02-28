@@ -1,10 +1,9 @@
-import client from "@/api/client";
+import ApiClient from "@/helpers/httpClient";
 import { handleResponse } from "@/helpers/handleResponse";
 
-class AuthService {
-  login(credentials) {
-    return client
-      .post("/authenticate/login", credentials)
+export default class AuthService {
+  static login(credentials) {
+    return ApiClient.post("/authenticate/login", credentials)
       .then(handleResponse)
       .then((response) => {
         if (response.data.token) {
@@ -22,13 +21,11 @@ class AuthService {
       });
   }
 
-  logout() {
+  static logout() {
     localStorage.removeItem("user");
   }
 
-  register(user) {
-    return client.post("/authenticate/register", user);
+  static register(user) {
+    return ApiClient.post("/authenticate/register", user);
   }
 }
-
-export default new AuthService();

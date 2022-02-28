@@ -113,7 +113,16 @@ export default {
         .dispatch("auth/register", this.$data.user)
         .then((res) => {
           this.$router.push({ name: "login" });
-          this.$swal(this.$t("Thank you"), res.message, "success");
+
+          this.$swal({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            icon: "success",
+            title: res.message,
+            timer: 3000,
+            timerProgressBar: true,
+          });
         })
         .catch((registerErrors) => {
           this.registerErrors.message = registerErrors.message;

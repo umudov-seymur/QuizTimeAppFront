@@ -21,8 +21,8 @@
 
         <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
           <transition
-            enter-active-class="animate__animated animate__fadeInRight"
-            leave-active-class="animate__animated animate__fadeOutRight"
+            enter-active-class="animate__animated animate__fadeInRight animate__faster"
+            leave-active-class="animate__animated animate__fadeOutRight animate__faster"
             mode="out-in"
           >
             <router-view />

@@ -6,31 +6,28 @@
       </div>
       <Container>
         <div class="w-full flex flex-wrap h-full relative">
-          <div class="w-full lg:w-2/4 pt-20">
+          <div class="w-full lg:w-2/4 pt-0 lg:pt-20">
             <div
               class="max-w-lg lg:max-w-md mx-auto lg:mx-0 mb-8 text-center lg:text-left"
             >
-              <h2 class="text-3xl lg:text-4xl mb-4 font-bold">
+              <h2 class="text-3xl lg:text-4xl mb-4 font-quicksand font-bold">
                 Tələbələrin tərəqqisini izləmək üçün
                 <span class="text-purple-500">etibarlı köməkçi </span>
               </h2>
-              <p
-                class="text-blueGray-400 leading-relaxed"
-                style="visibility: visible"
-              >
+              <p class="text-gray-500 font-quicksand font-medium">
                 Find and create free gamified quizzes and interactive lessons to
                 engage any learner.
               </p>
             </div>
-            <div class="text-center lg:text-left">
+            <div class="text-center flex lg:text-left">
               <a
-                class="tracking-wide uppercase block sm:inline-block py-4 px-8 mb-4 sm:mb-0 sm:mr-3 text-base text-white text-center font-semibold leading-none bg-purple-500 hover:bg-purple-700 rounded"
                 href="#key-features"
+                class="tracking-wide font-quicksand mr-3 uppercase text-base bg-purple-500 hover:bg-purple-400 text-white font-bold py-3 px-8 border-b-4 border-purple-700 hover:border-purple-500 rounded transition duration-300"
               >
                 Başla
               </a>
               <a
-                class="block sm:inline-block py-4 px-8 text-base text-blueGray-500 hover:text-blueGray-600 text-center font-semibold leading-none bg-white border border-blueGray-200 hover:border-blueGray-300 rounded"
+                class="tracking-wide font-quicksand mr-3 uppercase text-base bg-gray-200 hover:bg-gray-400 text-dark font-bold py-3 px-8 border-b-4 border-gray-300 hover:border-gray-300 rounded transition duration-300"
                 href="#how-we-work"
               >
                 How We Work?
@@ -54,13 +51,11 @@
       <Container>
         <div>
           <div class="max-w-lg mx-auto mb-12 text-center">
-            <h2 class="my-2 text-3xl md:text-4xl font-bold font-heading">
-              We Consultant to Get <br /><span class="text-purple-500"
-                >Our Business</span
-              >
-              Plan
+            <h2 class="my-2 text-3xl md:text-4xl font-bold font-quicksand">
+              Bizim
+              <span class="text-purple-500"> Üstünlüklərimiz </span>
             </h2>
-            <p class="leading-loose">
+            <p class="leading-relaxed font-quicksand">
               Business solution company sit our any how site used the our
               company any site us it-solve theme is very professional
             </p>
@@ -86,7 +81,7 @@
                     ></path>
                   </svg>
                 </div>
-                <h3 class="mb-2 font-bold font-heading">IT Consultancy</h3>
+                <h3 class="mb-2 font-bold font-quicksand">IT Consultancy</h3>
                 <p class="text-sm text-blueGray-400">
                   We believe brand interaction is key to communication. Real
                   innovations and positive customer experience are the heart of
@@ -114,7 +109,7 @@
                     ></path>
                   </svg>
                 </div>
-                <h3 class="mb-2 font-bold font-heading">Web Development</h3>
+                <h3 class="mb-2 font-bold font-quicksand">Web Development</h3>
                 <p class="text-sm">
                   We believe brand interaction is key to communication. Real
                   innovations and positive customer experience are the heart of
@@ -142,7 +137,7 @@
                     ></path>
                   </svg>
                 </div>
-                <h3 class="mb-2 font-bold font-heading">App Development</h3>
+                <h3 class="mb-2 font-bold font-quicksand">App Development</h3>
                 <p class="text-sm text-blueGray-400">
                   We believe brand interaction is key to communication. Real
                   innovations and positive customer experience are the heart of
@@ -176,7 +171,7 @@
                     ></path>
                   </svg>
                 </div>
-                <h3 class="mb-2 font-bold font-heading">Digital Marketing</h3>
+                <h3 class="mb-2 font-bold font-quicksand">Digital Marketing</h3>
                 <p class="text-sm text-blueGray-400">
                   We believe brand interaction is key to communication. Real
                   innovations and positive customer experience are the heart of

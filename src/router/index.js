@@ -37,10 +37,16 @@ const router = new Router({
       ],
     },
     {
-      path: "/questions",
-      name: "questions",
+      path: "/quizzes",
+      name: "quizzes",
       meta: { authorize: [Role.Teacher] },
-      component: () => import("@/components/pages/QuestionList"),
+      component: () => import("@/components/pages/quiz/QuizList"),
+    },
+    {
+      path: "/quizzes/create",
+      name: "quizzes.create",
+      meta: { authorize: [Role.Teacher] },
+      component: () => import("@/components/pages/quiz/AddQuiz"),
     },
     {
       path: "/404",

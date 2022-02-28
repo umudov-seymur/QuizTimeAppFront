@@ -3,15 +3,17 @@
     <div class="main flex h-screen bg-gray-50 dark:bg-gray-900">
       <div class="flex flex-col flex-1 w-full z-10">
         <AppHeader />
-
         <transition
-          enter-active-class="animate__animated animate__fadeIn"
-          leave-active-class="animate__animated animate__fadeOut"
+          enter-active-class="transition ease-out duration-150"
+          enter-class="transform opacity-0 scale-95"
+          enter-to-class="transform opacity-100 scale-100"
+          leave-active-class="transition ease-in duration-100"
+          leave-class="transform opacity-100 scale-100"
+          leave-to-class="transform opacity-0 scale-95"
           mode="out-in"
         >
           <router-view />
         </transition>
-
         <AppFooter />
       </div>
     </div>
@@ -38,12 +40,6 @@ export default {
 </script>
 
 <style lang="scss">
-/* @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
-
-body {
-  font-family: "Quicksand", sans-serif;
-} */
-
 #app {
   .main {
     &::before {

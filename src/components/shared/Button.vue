@@ -1,5 +1,6 @@
 <template>
   <button
+    :type="type"
     class="
       flex
       items-center
@@ -9,20 +10,17 @@
       text-sm
       font-medium
       leading-5
-      text-white
       transition-colors
       duration-150
-      bg-purple-600
       border border-transparent
       rounded-lg
-      active:bg-purple-600
-      hover:bg-purple-700
-      focus:outline-none focus:shadow-outline-purple
     "
     :class="{
       'cursor-not-allowed': isLoading,
-      'opacity-50' : isLoading
+      'opacity-50': isLoading,
+      ...getColors,
     }"
+    @click="$emit('click', $event)"
     :disabled="isLoading"
   >
     <svg
@@ -56,6 +54,36 @@ export default {
     isLoading: {
       type: Boolean,
       default: false,
+    },
+    type: {
+      type: String,
+      default: "submit",
+      validator(value) {
+        return ["button", "submit"].includes(value);
+      },
+    },
+    colors: {
+      type: Array,
+      default: function () {
+        return [
+          "text-white",
+          "bg-purple-600",
+          "hover:bg-purple-700",
+          "active:bg-purple-600",
+          "focus:shadow-outline-purple",
+        ];
+      },
+    },
+  },
+  computed: {
+    getColors() {
+      let colors = {};
+
+      for (let color of this.colors) {
+        colors[color] = color;
+      }
+
+      return colors;
     },
   },
 };

@@ -1,17 +1,10 @@
 <template>
- <div class="flex items-center mx-auto justify-center my-auto">
+  <div class="flex items-center mx-auto justify-center my-auto">
     <div class="wrapper404">
       <div class="header404">404</div>
       <div class="message404">Page not found</div>
-      <div class="image404">
-        <img
-          src="https://static.classtime.com/www/images/not-found.3b8be064f0c0.png"
-          role="presentation"
-        />
-      </div>
-      <div style="height: 5.5rem"></div>
     </div>
- </div>
+  </div>
 </template>
 
 <script>

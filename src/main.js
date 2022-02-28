@@ -7,11 +7,12 @@ import { store } from "@/store/index";
 // plugins
 import "@/plugins/veevalidate";
 import "@/plugins/sweetAlert";
+import "@/plugins/fontAwesome";
 
 // animate css
 import 'animate.css';
 
-// tailwind css
+// custom styles with tailwind css
 import "./assets/index.css";
 
 Vue.config.productionTip = false;

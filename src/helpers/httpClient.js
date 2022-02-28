@@ -23,17 +23,4 @@ client.interceptors.request.use(
   }
 );
 
-// client.interceptors.response.use(
-//   (response) => {
-//     return response;
-//   },
-//   (error) => {
-//     if (error.response.status === 401 && error.config) {
-//       store.commit("auth/DESTROY_TOKEN", null, { root: true });
-//       router.push({ name: "login" });
-//     }
-//     return Promise.reject(error);
-//   }
-// );
-
 export default client;
