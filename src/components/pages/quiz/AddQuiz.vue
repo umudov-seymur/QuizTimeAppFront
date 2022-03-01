@@ -137,7 +137,7 @@ export default {
         password: "",
         timer: null,
         categoryId: "",
-      }
+      },
     };
   },
   computed: {
@@ -165,28 +165,11 @@ export default {
       this.$store
         .dispatch("quiz/addQuiz", this.quiz)
         .then((res) => {
-          this.$swal({
-            toast: true,
-            position: "top-right",
-            showConfirmButton: false,
-            icon: "success",
-            title: res.message,
-            timer: 5000,
-            timerProgressBar: true,
-          });
-
+          this.toastrNotify(res.message, "success");
           this.$router.push({ name: "quizzes" });
         })
-        .catch((error) => {
-          this.$swal({
-            toast: true,
-            position: "top-right",
-            showConfirmButton: false,
-            icon: "error",
-            title: error.message,
-            timer: 5000,
-            timerProgressBar: true,
-          });
+        .catch((err) => {
+          this.toastrNotify(err.message, "error");
         })
         .finally(() => (this.isLoading = false));
     },

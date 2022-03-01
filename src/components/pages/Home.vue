@@ -63,7 +63,7 @@
           <div class="flex flex-wrap mb-6">
             <div class="w-full md:w-1/2 lg:w-1/4 px-3 mb-6">
               <div
-                class="border border-gray-100 pt-8 px-6 pb-6 bg-white text-center rounded shadow hover:shadow-lg transition duration-500"
+                class="border border-gray-100 pt-8 px-6 pb-6 bg-white text-center rounded shadow-md hover:shadow-lg transition duration-500"
               >
                 <div class="text-purple-500 mx-auto mb-4">
                   <svg
@@ -91,7 +91,7 @@
             </div>
             <div class="w-full md:w-1/2 lg:w-1/4 px-3 mb-6">
               <div
-                class="border border-gray-100 pt-8 px-6 pb-6 bg-white text-center rounded shadow hover:shadow-md transition duration-500"
+                class="border border-gray-100 pt-8 px-6 pb-6 bg-white text-center rounded shadow-md hover:shadow-md transition duration-500"
               >
                 <div class="text-purple-500 mx-auto mb-4">
                   <svg
@@ -119,7 +119,7 @@
             </div>
             <div class="w-full md:w-1/2 lg:w-1/4 px-3 mb-6">
               <div
-                class="border border-gray-100 pt-8 px-6 pb-6 bg-white text-center rounded shadow hover:shadow-lg transition duration-500"
+                class="border border-gray-100 pt-8 px-6 pb-6 bg-white text-center rounded shadow-md hover:shadow-lg transition duration-500"
               >
                 <div class="text-purple-500 mx-auto mb-4">
                   <svg
@@ -147,7 +147,7 @@
             </div>
             <div class="w-full md:w-1/2 lg:w-1/4 px-3 mb-6">
               <div
-                class="border border-gray-100 pt-8 px-6 pb-6 bg-white text-center rounded shadow hover:shadow-lg transition duration-500"
+                class="border border-gray-100 pt-8 px-6 pb-6 bg-white text-center rounded shadow-md hover:shadow-lg transition duration-500"
               >
                 <div class="text-purple-500 mx-auto mb-4">
                   <svg
@@ -208,7 +208,7 @@ export default {
 }
 
 .hero-3 {
-  min-height: 680px;
+  min-height: 660px;
   max-height: 100%;
 }
 </style>
