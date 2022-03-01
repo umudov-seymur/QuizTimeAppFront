@@ -8,9 +8,13 @@ import { store } from "@/store/index";
 import "@/plugins/veevalidate";
 import "@/plugins/sweetAlert";
 import "@/plugins/fontAwesome";
+import "@/plugins/vueMoment";
+
+// global mixins
+import "@/mixins/toastrMixin";
 
 // animate css
-import 'animate.css';
+import "animate.css";
 
 // custom styles with tailwind css
 import "./assets/index.css";

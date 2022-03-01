@@ -18,6 +18,7 @@
     "Already have an account? Login": "Artıq bir hesabınız var mı? Daxil ol",
     "Do you really want to leave? you have unsaved changes!": "Həqiqətən ayrılmaq istəyirsən? yadda saxlanmamış dəyişiklikləriniz var!",
     "Not Found": "Səhifə tapılmadı",
+    "Not Found Result": "Nəticə tapılmadı",
     "Quizzes": "Quizlər",
     "Add New Quiz": "Yeni quiz əlavə et",
     "Categories": "Kateqoriyalar",
@@ -30,7 +31,14 @@
         "Timer": "Quiz bitmə vaxtı"
     },
     "Close": "Ləğv et",
+    "Create": "Əlavə et",
     "Save": "Yadda saxla",
     "Category": "Kateqoriya",
-    "Please Select": "Zəhmət olmasa {name} seçin"
+    "Add New Category": "Yeni kateqoriya əlavə et",
+    "Edit Category": "Kateqoriyada düzəliş et",
+    "Please Select": "{label} seçin",
+    "Category Name": "Kateqoriyanın adı",
+    "Quizzes Count": "Quizlərin sayı",
+    "Created At": "Yaradılma tarixi",
+    "Actions": "Əməliyyatlar"
 }

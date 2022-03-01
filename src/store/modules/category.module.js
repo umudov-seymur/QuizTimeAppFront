@@ -36,10 +36,63 @@ export default {
   },
   actions: {
     fetchCategories({ commit }) {
+      commit("SET_LOADING", true);
+
       return CategoryService.getAllCategory().then(
         (response) => {
           commit("SET_CATEGORIES", response.data);
+          setTimeout(() => {
+            commit("SET_LOADING", false);
+          }, 850);
+          return Promise.resolve(response.data);
+        },
+        (error) => {
+          return Promise.reject(error.response.data);
+        }
+      );
+    },
+    fetchCategoryById({ commit }, categoryId) {
+      return CategoryService.getCategoryById(categoryId).then(
+        (response) => {
+          return Promise.resolve(response.data);
+        },
+        (error) => {
+          return Promise.reject(error.response.data);
+        }
+      );
+    },
+    addCategory({ commit }, category) {
+      commit("SET_LOADING", true);
+
+      return CategoryService.createCategory(category).then(
+        (response) => {
+          commit("SET_CATEGORY", category);
           commit("SET_LOADING", false);
+          return Promise.resolve(response.data);
+        },
+        (error) => {
+          return Promise.reject(error.response.data);
+        }
+      );
+    },
+    updateCategory({ commit }, category) {
+      commit("SET_LOADING", true);
+
+      return CategoryService.updateCategory(category).then(
+        (response) => {
+          commit("UPDATE_CATEGORY", category);
+          commit("SET_LOADING", false);
+          return Promise.resolve(response.data);
+        },
+        (error) => {
+          return Promise.reject(error.response.data);
+        }
+      );
+    },
+    deleteCategory({ commit }, categoryId) {
+      return CategoryService.deleteCategory(categoryId).then(
+        (response) => {
+          commit("DELETE_CATEGORY", categoryId);
           return Promise.resolve(response.data);
         },
         (error) => {

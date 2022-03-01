@@ -12,7 +12,7 @@ const router = new Router({
   routes: [
     {
       path: "/",
-      redirect: "/home"
+      redirect: "/home",
     },
     {
       path: "/home",
@@ -47,6 +47,18 @@ const router = new Router({
       name: "categories",
       meta: { authorize: [Role.Teacher] },
       component: () => import("@/components/pages/categories/CategoryList"),
+    },
+    {
+      path: "/categories/create",
+      name: "categories.create",
+      meta: { authorize: [Role.Teacher] },
+      component: () => import("@/components/pages/categories/AddCategory"),
+    },
+    {
+      path: "/categories/:id/edit",
+      name: "categories.update",
+      meta: { authorize: [Role.Teacher] },
+      component: () => import("@/components/pages/categories/EditCategory"),
     },
     {
       path: "/quizzes/create",
