@@ -2,23 +2,23 @@ import ApiClient from "@/helpers/httpClient";
 import { handleResponse } from "@/helpers/handleResponse";
 
 export default class QuizService {
-  static getAllCategory() {
+  static getAllQuiz() {
     return ApiClient.get("/quizzes").catch(handleResponse);
   }
 
-  static getCategoryById(categoryId) {
-    return ApiClient.get(`/quizzes/${categoryId}`).then(handleResponse);
+  static getQuizById(quizId) {
+    return ApiClient.get(`/quizzes/${quizId}`).then(handleResponse);
   }
 
-  static createCategory(category) {
-    return ApiClient.post("/quizzes", category).then(handleResponse);
+  static createQuiz(quiz) {
+    return ApiClient.post("/quizzes", quiz).then(handleResponse);
   }
 
-  static updateCategory(category) {
-    return ApiClient.put(`/quizzes/${category.id}`, category).then(handleResponse);
+  static updateQuiz(quiz) {
+    return ApiClient.put(`/quizzes/${quiz.id}`, quiz).then(handleResponse);
   }
 
-  static deleteCategory(categoryId) {
-    return ApiClient.delete(`/quizzes/${categoryId}`).then(handleResponse);
+  static deleteQuiz(quizId) {
+    return ApiClient.delete(`/quizzes/${quizId}`).then(handleResponse);
   }
 }
