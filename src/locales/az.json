@@ -30,7 +30,16 @@
         "Password": "Quiz şifrəsi",
         "Timer": "Quiz bitmə vaxtı"
     },
-    "Close": "Ləğv et",
+    "Question": {
+        "Title": "Sual",
+        "List": "Suallar",
+        "Add": "Yeni sual əlavə et",
+        "Weight": "Bal (pts)"
+    },
+    "Students will be able to freely enter text to answer this question.": "Tələbələr bu suala cavab vermək üçün sərbəst şəkildə mətn daxil edə biləcəklər.",
+    "Answer": "Cavab",
+    "Cancel": "Ləğv et",
+    "Close": "Bağla",
     "Create": "Əlavə et",
     "Save": "Yadda saxla",
     "Category": "Kateqoriya",
@@ -40,5 +49,9 @@
     "Category Name": "Kateqoriyanın adı",
     "Quizzes Count": "Quizlərin sayı",
     "Created At": "Yaradılma tarixi",
-    "Actions": "Əməliyyatlar"
+    "Actions": "Əməliyyatlar",
+    "Answers": "Cavablar",
+    "Multiple Choice" : "Çoxlu seçim",
+    "Single Choice" : "Tək seçim",
+    "Open Ended" : "Açıq"
 }

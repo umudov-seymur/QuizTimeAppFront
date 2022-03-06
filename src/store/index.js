@@ -5,6 +5,7 @@ import Vuex from "vuex";
 import auth from "./modules/auth.module";
 import quiz from "./modules/quiz.module";
 import category from "./modules/category.module";
+import question from "./modules/question.module";
 
 Vue.use(Vuex);
 
@@ -13,5 +14,6 @@ export const store = new Vuex.Store({
     auth,
     quiz,
     category,
+    question,
   },
 });

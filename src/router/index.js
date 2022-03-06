@@ -43,6 +43,18 @@ const router = new Router({
       component: () => import("@/components/pages/quiz/QuizList"),
     },
     {
+      path: "/quizzes/create",
+      name: "quizzes.create",
+      meta: { authorize: [Role.Teacher] },
+      component: () => import("@/components/pages/quiz/AddQuiz"),
+    },
+    {
+      path: "/quizzes/:id/questions",
+      name: "quizzes.questions",
+      meta: { authorize: [Role.Teacher] },
+      component: () => import("@/components/pages/questions/QuestionList"),
+    },
+    {
       path: "/categories",
       name: "categories",
       meta: { authorize: [Role.Teacher] },
@@ -59,12 +71,6 @@ const router = new Router({
       name: "categories.update",
       meta: { authorize: [Role.Teacher] },
       component: () => import("@/components/pages/categories/EditCategory"),
-    },
-    {
-      path: "/quizzes/create",
-      name: "quizzes.create",
-      meta: { authorize: [Role.Teacher] },
-      component: () => import("@/components/pages/quiz/AddQuiz"),
     },
     {
       path: "/404",

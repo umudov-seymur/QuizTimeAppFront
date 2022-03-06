@@ -165,18 +165,18 @@ export default {
       this.$store
         .dispatch("quiz/addQuiz", this.quiz)
         .then((res) => {
-          this.toastrNotify(res.message, "success");
-          this.$router.push({ name: "quizzes" });
+          this.toastNotify(res.message, "success");
+          this.$router.push({ name: "quizzes.questions", params : {id : res.id} });
         })
         .catch((err) => {
-          this.toastrNotify(err.message, "error");
+          this.toastNotify(err.message, "error");
         })
         .finally(() => (this.isLoading = false));
     },
   },
   created() {
-    this.fetchCategories();
     this.setQuizPassword();
+    this.fetchCategories();
   },
   metaInfo() {
     return {

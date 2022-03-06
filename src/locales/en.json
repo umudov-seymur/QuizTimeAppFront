@@ -12,13 +12,13 @@
         "Student": "Student",
         "Teacher": "Teacher"
     },
-    "Log in" : "Daxil ol",
-    "Sign Up" : "Qeydiyyat",
+    "Log in" : "Sing In",
+    "Sign Up" : "Sign Up",
     "Already have an account? Login": "Artıq bir hesabınız var mı? Daxil ol",
     "Not Found": "Səhifə tapılmadı",
     "Quizzes" : "Quizlər",
     "Categories" : "Kateqoriyalar",
     "Settings" : "Hesab Parametrləri",
     "Results" : "Nəticələr",
-    "Join" : "Qoşul"
+    "Join" : "Join"
 }
