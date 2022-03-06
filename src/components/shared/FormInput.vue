@@ -4,20 +4,23 @@
     :vid="vid"
     :rules="rules"
     :name="name || label"
-    v-slot="{ errors, required, ariaInput, ariaMsg }"
+    v-slot="{ errors, required, ariaMsg }"
   >
-    <label class="block text-sm" @click="$refs.input.focus()" :for="name">
+    <label class="block text-sm" @click="focusInput" :for="name">
       <span class="text-gray-700 dark:text-gray-400">{{ label || name }}</span>
-      <span class="text-red-600">{{ required ? " *" : "" }}</span>
+      <span class="text-red-600" v-if="label || name">{{
+        required ? " *" : ""
+      }}</span>
 
       <div class="relative">
         <input
-          class="block w-full mt-1 text-sm form-input dark:text-gray-300 dark:bg-gray-700 focus:outline-none"
+          class="block w-full text-sm form-input dark:text-gray-300 dark:bg-gray-700 focus:outline-none"
           :class="{
             'dark:border-gray-600 focus:border-purple-400 focus:shadow-outline-purple dark:focus:shadow-outline-gray':
               !errors[0],
             'border-red-600 focus:border-red-400 focus:shadow-outline-red':
               errors[0],
+            'mt-1': label || name,
             'has-value': hasValue,
           }"
           :id="name"
@@ -25,8 +28,8 @@
           :placeholder="placeholder"
           ref="input"
           v-on="$listeners"
+          v-bind="$attrs"
           v-model="innerValue"
-          v-bind="ariaInput"
         />
 
         <slot name="append" />
@@ -40,7 +43,7 @@
       </span>
     </label>
 
-    <ValidationErrorBox v-if="errors[0]" v-bind="ariaMsg">
+    <ValidationErrorBox v-if="errors[0] && (label || name)" v-bind="ariaMsg">
       {{ errors[0] }}
     </ValidationErrorBox>
   </ValidationProvider>
@@ -107,6 +110,13 @@ export default {
   computed: {
     hasValue() {
       return !!this.innerValue;
+    },
+  },
+  methods: {
+    focusInput() {
+      if (this.name || this.label) {
+        return this.$refs.input.focus();
+      }
     },
   },
   watch: {
