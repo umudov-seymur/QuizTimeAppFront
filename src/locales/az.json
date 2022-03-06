@@ -36,6 +36,8 @@
         "Add": "Yeni sual əlavə et",
         "Weight": "Bal (pts)"
     },
+    "At least one correct answer must be chosen" : "Ən az bir doğru cavab seçilməlidir",
+    "Question added successfull" : "Sual uğurla əlavə olundu",
     "Students will be able to freely enter text to answer this question.": "Tələbələr bu suala cavab vermək üçün sərbəst şəkildə mətn daxil edə biləcəklər.",
     "Answer": "Cavab",
     "Cancel": "Ləğv et",

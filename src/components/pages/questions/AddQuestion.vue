@@ -187,7 +187,7 @@ export default {
 
       if (this.isNotExistRightAnswer()) {
         return this.toastNotify(
-          "Ən az bir doğru cavab seçilməlidir",
+          this.$t("At least one correct answer must be chosen"),
           "warning"
         );
       }
@@ -197,7 +197,7 @@ export default {
       this.addQuestionByQuizId({ quizId, question: this.question })
         .then(async (response) => {
           await this.saveAnswers(response);
-          this.toastNotify("Question added successfull", "success");
+          this.toastNotify($t("Question added successfull"), "success");
           this.closeModal();
         })
         .catch((err) => {
