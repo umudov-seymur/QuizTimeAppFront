@@ -43,7 +43,7 @@ export default {
           commit("SET_CATEGORIES", response.data);
           setTimeout(() => {
             commit("SET_LOADING", false);
-          }, 850);
+          }, 1000);
           return Promise.resolve(response.data);
         },
         (error) => {
