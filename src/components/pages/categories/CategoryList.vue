@@ -149,7 +149,7 @@ export default {
     ...mapActions("category", ["fetchCategories", "deleteCategory"]),
     removeCategory(categoryId) {
       this.deleteCategory(categoryId).then((res) =>
-        this.toastrNotify(this.$t(res.message), "success")
+        this.toastNotify(this.$t(res.message), "success")
       );
     },
   },

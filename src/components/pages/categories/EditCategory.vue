@@ -39,8 +39,6 @@
 
 <script>
 import Container from "@/components/shared/Container";
-import FormInput from "@/components/shared/FormInput";
-import Button from "@/components/shared/Button";
 import CategoryForm from "@/components/pages/categories/CategoryForm";
 import { mapActions } from "vuex";
 
@@ -66,11 +64,11 @@ export default {
       this.$store
         .dispatch("category/updateCategory", data)
         .then((res) => {
-          this.toastrNotify(res.message, "success");
+          this.toastNotify(res.message, "success");
           this.$router.push({ name: "categories" });
         })
         .catch((err) => {
-          this.toastrNotify(err.message, "error");
+          this.toastNotify(err.message, "error");
         })
         .finally(() => (this.isLoading = false));
     },
@@ -80,6 +78,6 @@ export default {
       title: this.$t("Edit Category"),
     };
   },
-  components: { Container, Button, FormInput, CategoryForm },
+  components: { Container, CategoryForm },
 };
 </script>
