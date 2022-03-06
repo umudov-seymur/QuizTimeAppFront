@@ -2,7 +2,7 @@ import Vue from "vue";
 
 Vue.mixin({
   methods: {
-    toastrNotify(message, type = "success", timer = 5000) {
+    toastNotify(message, type = "success", timer = 5000) {
       this.$swal({
         toast: true,
         position: "top-right",
