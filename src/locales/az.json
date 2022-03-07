@@ -37,6 +37,7 @@
         "Weight": "Bal (pts)"
     },
     "At least one correct answer must be chosen" : "Ən az bir doğru cavab seçilməlidir",
+    "No data found for this quiz." : "Bu quiz'ə aid heç bir sual tapılmadı.",
     "Question added successfull" : "Sual uğurla əlavə olundu",
     "Students will be able to freely enter text to answer this question.": "Tələbələr bu suala cavab vermək üçün sərbəst şəkildə mətn daxil edə biləcəklər.",
     "Answer": "Cavab",
@@ -53,6 +54,7 @@
     "Created At": "Yaradılma tarixi",
     "Actions": "Əməliyyatlar",
     "Answers": "Cavablar",
+    "Answer choices" : "Cavab seçimləri",
     "Multiple Choice" : "Çoxlu seçim",
     "Single Choice" : "Tək seçim",
     "Open Ended" : "Açıq"

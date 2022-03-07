@@ -1,10 +1,14 @@
 <template>
   <div
-    class="flex flex-col mt-8 border border-gray-300 rounded-lg overflow-hidden shadow-md bg-white question-details-card my-2"
+    class="flex flex-col mt-6 border border-gray-300 rounded-lg overflow-hidden shadow-md bg-white question-details-card my-2"
+    :class="{
+      'cursor-move' : isSortQuestions
+    }"
   >
     <div class="p-2 bg-gray-50 flex items-center justify-between">
       <div class="flex items-center">
         <button
+          @click="toggleSortQuestions"
           class="focus:shadow-outline-purple cursor-move focus:outline-none w-8 h-8 mr-2 drag-button text-gray-600 hover:bg-gray-200 rounded has-tooltip"
         >
           <font-awesome-icon icon="fa-solid fa-sort" />
@@ -77,20 +81,20 @@
       <div
         class="flex space-x-1 items-center text-sm overflow-hidden text-dark-2"
         :class="{
-          'mb-4': existAnswers,
+          'mb-4': showAnswers,
         }"
       >
         <span>Q.</span>
         <span>{{ question.title }}</span>
       </div>
-      <div class="relative bg-gray-200 mb-4 h-px" v-if="existAnswers">
+      <div class="relative bg-gray-200 mb-4 h-px" v-if="showAnswers">
         <span
           class="absolute px-2 text-xs ml-4 -translate-y-1/2 transform text-gray-500 bg-gray-100"
         >
-          answer choices
+          {{ $t('Answer choices') }}
         </span>
       </div>
-      <div class="flex flex-wrap" v-if="existAnswers">
+      <div class="flex flex-wrap" v-if="showAnswers">
         <div
           class="mb-2 flex items-center w-1/2"
           v-for="(answer, index) in question.answers"
@@ -132,7 +136,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "QuestionItem",
@@ -146,13 +150,19 @@ export default {
       required: true,
     },
   },
+  methods: {
+    toggleSortQuestions() {
+      this.setIsSortQuestions(!this.isSortQuestions);
+    },
+    ...mapMutations("question", {
+      setIsSortQuestions: "setIsSortQuestions",
+    }),
+  },
   computed: {
     ...mapGetters("question", {
       types: "getQuestionTypes",
+      isSortQuestions: "getIsSortQuestions",
     }),
-    existAnswers() {
-      return this.question.answers.length > 0;
-    },
     questionType() {
       const typeId = this.question.questionType;
       const currentType = this.types.find((type) => type.id == typeId);
@@ -161,6 +171,9 @@ export default {
         icon: currentType.icon,
         class: currentType.class,
       };
+    },
+    showAnswers() {
+      return (this.question.answers.length > 0 && !this.isSortQuestions) || !this.isSortQuestions;
     },
   },
 };

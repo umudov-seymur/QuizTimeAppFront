@@ -30,6 +30,7 @@ export default {
         class: ["bg-yellow-400"],
       },
     ],
+    isSortQuestions : false,
     selectedQuestionType: {},
   },
   getters: {
@@ -42,6 +43,9 @@ export default {
     getSelectedType(state) {
       return state.selectedQuestionType;
     },
+    getIsSortQuestions(state) {
+      return state.isSortQuestions;
+    }
   },
   mutations: {
     SET_QUESTIONS(state, questions) {
@@ -64,6 +68,9 @@ export default {
     SET_QUESTION_TYPE(state, questionType) {
       state.selectedQuestionType = questionType;
     },
+    setIsSortQuestions(state, status) {
+      state.isSortQuestions = status;
+    },
   },
   actions: {
     fetchQuestionsByQuizId({ commit }, quizId) {
@@ -79,6 +86,17 @@ export default {
     },
     addQuestionByQuizId({ commit }, { quizId, question }) {
       return QuestionService.createQuestionByQuizId(quizId, question).then(
+        (response) => {
+          return Promise.resolve(response.data);
+        },
+        (error) => {
+          return Promise.reject(error.response.data);
+        }
+      );
+    },
+    updateOrderQuestions({commit}, {quizId, orderedQuestion}) {
+      commit("SET_QUESTIONS", orderedQuestion);
+      return QuestionService.updateOrderQuestions(quizId, orderedQuestion).then(
         (response) => {
           return Promise.resolve(response.data);
         },

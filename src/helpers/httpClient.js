@@ -1,5 +1,6 @@
 import Axios from "axios";
 import { store } from "@/store/index";
+import router from "@/router";
 
 const client = Axios.create({
   baseURL: process.env.VUE_APP_API_URL,

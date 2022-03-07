@@ -4,24 +4,37 @@
       <div class="flex flex-col lg:flex-row items-start w-full">
         <div class="question-types lg:w-2/4 w-full">
           <p
-            class="md:mb-6 mb-4 text-sm text-dark-2 bg-white py-3 border shadow rounded font-semibold text-center"
+            class="md:mb-6 mb-4 text-sm uppercase text-dark-2 bg-white py-3 border shadow rounded font-semibold text-center"
           >
-            <span>or, Create a new question</span>
+            <span>+ {{ $t("Question.Add") }}</span>
           </p>
 
           <QuestionTypes class="sticky top-0 z-10 shadow-lg" />
-        
+
           <div v-if="!isLoading">
-            <QuestionItem
-              v-for="(question, index) in questions"
-              :question="question"
-              :key="question.id"
-              :isShowAnswers="isShowAnswer"
+            <draggable
+              v-model="questions"
+              v-bind="dragOptions"
+              :disabled="!isSortQuestions"
+              @start="drag = true"
+              @end="drag = false"
             >
-              <template #title>
-                {{ $t("Question.Title") }} {{ index + 1 }}
-              </template>
-            </QuestionItem>
+              <transition-group
+                type="transition"
+                :name="!drag ? 'flip-list' : null"
+              >
+                <QuestionItem
+                  v-for="(question, index) in questions"
+                  :question="question"
+                  :key="question.id"
+                  :isShowAnswers="isShowAnswer"
+                >
+                  <template #title>
+                    {{ $t("Question.Title") }} {{ index + 1 }}
+                  </template>
+                </QuestionItem>
+              </transition-group>
+            </draggable>
           </div>
 
           <div v-if="!isLoading && questions.length < 1">
@@ -29,7 +42,7 @@
               class="bg-yellow-200 shadow-lg rounded-lg py-4 px-6 mt-8 text-base text-yellow-700"
               role="alert"
             >
-              Bu quiz'ə aid heç bir sual tapılmadı.
+              {{ $t("No data found for this quiz.") }}
             </div>
           </div>
 
@@ -128,15 +141,19 @@ import QuestionItem from "@/components/pages/questions/QuestionItem";
 import QuestionTypes from "@/components/pages/questions/QuestionTypes";
 import AddQuestion from "@/components/pages/questions/AddQuestion";
 import QuestionLoader from "@/components/pages/questions/QuestionLoader.vue";
-import { mapGetters, mapActions } from "vuex";
+import { mapActions } from "vuex";
+import draggable from "vuedraggable";
 
 export default {
   name: "QuestionList",
+  order: 1,
   data() {
     return {
       isOpenQuestionModal: false,
       isShowAnswer: true,
       isLoading: true,
+      drag: false,
+      quizId: "",
     };
   },
   methods: {
@@ -146,13 +163,34 @@ export default {
     },
   },
   computed: {
-    ...mapGetters("question", {
-      questions: "getQuestions",
-    }),
+    questions: {
+      get() {
+        return this.$store.getters["question/getQuestions"];
+      },
+      set(orderedQuestion) {
+        this.$store.dispatch("question/updateOrderQuestions", {
+          quizId: this.quizId,
+          orderedQuestion,
+        });
+      },
+    },
+    isSortQuestions() {
+      return this.$store.getters["question/getIsSortQuestions"];
+    },
+    dragOptions() {
+      return {
+        animation: 200,
+        group: "questions",
+        dragClass: "cursor-move",
+        forceFallback: true,
+        ghostClass: "ghost",
+      };
+    },
   },
   created() {
-    const quizId = this.$route.params.id;
-    this.fetchQuestionsByQuizId(quizId).finally(() => {
+    this.quizId = this.$route.params.id;
+
+    this.fetchQuestionsByQuizId(this.quizId).finally(() => {
       setTimeout(() => {
         this.isLoading = false;
       }, 1500);
@@ -164,6 +202,7 @@ export default {
     QuestionTypes,
     AddQuestion,
     QuestionLoader,
+    draggable,
   },
   metaInfo() {
     return {
