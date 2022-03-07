@@ -71,6 +71,12 @@ export default {
     setIsSortQuestions(state, status) {
       state.isSortQuestions = status;
     },
+    DELETE_QUESTION(state, id) {
+      const index = state.questions.findIndex(
+        (question) => question.id === id
+      );
+      state.questions.splice(index, 1);
+    }
   },
   actions: {
     fetchQuestionsByQuizId({ commit }, quizId) {
@@ -108,6 +114,17 @@ export default {
     async addAnswersByQuestion({ commit }, payload) {
       await AnswerService.addAnswersByQuestionId(payload.question.id, payload.answers);
       commit("SET_QUESTION", payload);
+    },
+    deleteQuestionByQuizId({ commit }, {quizId, questionId}) {
+      return QuestionService.deleteQuestionByQuizId(quizId, questionId).then(
+        (response) => {
+          commit("DELETE_QUESTION", questionId);
+          return Promise.resolve(response.data);
+        },
+        (error) => {
+          return Promise.reject(error.response.data);
+        }
+      );
     },
   },
 };

@@ -60,6 +60,7 @@
           </svg>
         </button>
         <button
+          @click="$emit('removeQuestion', question.id)"
           class="focus:shadow-outline-purple focus:outline-none mr-2 flex items-center justify-center w-8 h-8 text-sm font-semibold bg-white border border-solid border-gray-300 text-gray-600 hover:bg-gray-200 rounded white min-w-max relative transition-colors duration-200 ease-in-out has-tooltip"
         >
           <svg
@@ -89,7 +90,7 @@
       </div>
       <div class="relative bg-gray-200 mb-4 h-px" v-if="showAnswers">
         <span
-          class="absolute px-2 text-xs ml-4 -translate-y-1/2 transform text-gray-500 bg-gray-100"
+          class="absolute px-2 text-sm ml-4 -translate-y-1/2 transform text-gray-500 bg-gray-100"
         >
           {{ $t('Answer choices') }}
         </span>
@@ -151,12 +152,12 @@ export default {
     },
   },
   methods: {
-    toggleSortQuestions() {
-      this.setIsSortQuestions(!this.isSortQuestions);
-    },
     ...mapMutations("question", {
       setIsSortQuestions: "setIsSortQuestions",
     }),
+    toggleSortQuestions() {
+      this.setIsSortQuestions(!this.isSortQuestions);
+    }
   },
   computed: {
     ...mapGetters("question", {

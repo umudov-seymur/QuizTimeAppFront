@@ -22,4 +22,8 @@ export default class QuestionService {
 
     return ApiClient.patch(`quizzes/${quizId}/questions/UpdateOrder`, sortedQuestions).catch(handleResponse);
   }
+
+  static deleteQuestionByQuizId(quizId, questionId) {
+    return ApiClient.delete(`quizzes/${quizId}/questions/${questionId}`).catch(handleResponse);
+  }
 }

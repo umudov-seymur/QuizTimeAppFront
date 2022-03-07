@@ -75,7 +75,7 @@
                   <FormInput
                     class="w-full"
                     :placeholder="`ex: ${$t('Answer')} ${k + 1} .....`"
-                    rules="required"
+                    rules="required|max:100"
                     v-model.trim="answer.content"
                   />
 

@@ -20,12 +20,13 @@
               @end="drag = false"
             >
               <transition-group
-                type="transition"
-                :name="!drag ? 'flip-list' : null"
+                enter-active-class="animate__animated animate__fadeInDown animate__fast"
+                leave-active-class="animate__animated animate__fadeOutRight animate__fast"
               >
                 <QuestionItem
                   v-for="(question, index) in questions"
                   :question="question"
+                  @removeQuestion="removeQuestion"
                   :key="question.id"
                   :isShowAnswers="isShowAnswer"
                 >
@@ -157,9 +158,34 @@ export default {
     };
   },
   methods: {
-    ...mapActions("question", ["fetchQuestionsByQuizId"]),
+    ...mapActions("question", [
+      "fetchQuestionsByQuizId",
+      "deleteQuestionByQuizId",
+    ]),
     toggleQuestionModal() {
       this.isOpenQuestionModal = !this.isOpenQuestionModal;
+    },
+    removeQuestion(questionId) {
+      this.$swal({
+        title: this.$t("Are you sure?"),
+        text: this.$t("You won't be able to revert this!"),
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: this.$t("Yes, delete it!"),
+        cancelButtonText: this.$t("Cancel"),
+      }).then((result) => {
+        if (!result.isConfirmed) return;
+
+        this.deleteQuestionByQuizId({ quizId: this.quizId, questionId })
+          .then(() => {
+            this.toastNotify(this.$t("Question deleted successfull"), "success");
+          })
+          .catch((err) => {
+            this.toastNotify(err.message, "error");
+          });
+      });
     },
   },
   computed: {
