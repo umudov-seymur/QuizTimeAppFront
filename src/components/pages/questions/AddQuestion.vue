@@ -197,7 +197,7 @@ export default {
       this.addQuestionByQuizId({ quizId, question: this.question })
         .then(async (response) => {
           await this.saveAnswers(response);
-          this.toastNotify($t("Question added successfull"), "success");
+          this.toastNotify(this.$t("Question added successfull"), "success");
           this.closeModal();
         })
         .catch((err) => {

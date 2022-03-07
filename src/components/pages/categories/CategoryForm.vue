@@ -62,7 +62,6 @@ export default {
   },
   methods: {
     saveCategory() {
-      console.log("emit it worked :)");
       this.$emit("saved", this.category);
     },
   },

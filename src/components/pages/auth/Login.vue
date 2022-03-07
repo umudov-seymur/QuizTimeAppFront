@@ -12,7 +12,7 @@
       />
 
       <FormInput
-        rules="required|email|min:3|max:30"
+        rules="required|email|min:3"
         placeholder="example@quiztime.az"
         v-model.trim="credentials.email"
         :name="$t('Email')"

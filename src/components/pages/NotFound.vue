@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center mx-auto justify-center my-auto">
+  <div class="flex items-center mx-auto justify-center my-auto h-full">
     <div class="wrapper404">
       <div class="header404">404</div>
       <div class="message404">Page not found</div>
