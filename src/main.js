@@ -9,6 +9,7 @@ import "@/plugins/veevalidate";
 import "@/plugins/sweetAlert";
 import "@/plugins/fontAwesome";
 import "@/plugins/vueMoment";
+import "@/plugins/vuePopover";
 
 // global mixins
 import "@/mixins/toastrMixin";
