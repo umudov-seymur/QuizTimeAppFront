@@ -208,7 +208,7 @@ export default {
 }
 
 .hero-3 {
-  min-height: 660px;
+  min-height: 600px;
   max-height: 100%;
 }
 </style>
