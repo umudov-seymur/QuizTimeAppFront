@@ -74,7 +74,7 @@
                 <td class="px-4 py-3 text-sm">
                   <Badge
                     :text="category.createdAt | moment('DD/MM/YYYY')"
-                    color="green"
+                    color="indigo"
                   />
                 </td>
                 <td class="px-4 py-3">

@@ -1,7 +1,7 @@
 <template>
-  <div class="flex items-center p-6 my-auto">
+  <div class="flex items-center p-6 h-full my-6 lg:my-auto">
     <div
-      class="flex-1 h-full max-w-5xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800"
+      class="flex-1 max-w-5xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800"
     >
       <div
         class="flex flex-col overflow-y-auto md:flex-row overflow-hidden"

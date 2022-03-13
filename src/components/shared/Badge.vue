@@ -1,6 +1,6 @@
 <template>
   <span
-    class="px-3 py-1 font-semibold shadow-sm leading-tight rounded-full"
+    class="px-6 py-1 font-semibold shadow-sm leading-tight text-center rounded-full"
     :class="badgeColor"
   >
     {{ text }}
@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     badgeColor() {
-      return `text-${this.color}-700 bg-${this.color}-100 dark:bg-${this.color}-700 dark:text-${this.color}-100`;
+      return `text-${this.color}-700 bg-${this.color}-100 border border-${this.color}-200 dark:bg-${this.color}-700 dark:text-${this.color}-100`;
     },
   },
 };

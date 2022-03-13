@@ -31,7 +31,7 @@
           {{ $t("Please Select", { name: $t("Category") }) }}
         </option>
         <option v-for="item in items" :key="item.id" :value="item.id">
-          {{ item.text }}
+          {{ item.text || item.name }}
         </option>
       </select>
     </label>
@@ -73,7 +73,7 @@ export default {
       type: Array,
       required: true,
     },
-    value: {
+    val: {
       type: null,
       default: "",
     },
@@ -97,8 +97,8 @@ export default {
     },
   },
   created() {
-    if (this.value) {
-      this.innerValue = this.value;
+    if (this.val) {
+      this.innerValue = this.val;
     }
   },
 };
