@@ -112,11 +112,7 @@
               class="bg-yellow-200 shadow-lg rounded-lg py-4 px-6 mt-8 text-base text-yellow-700"
               role="alert"
             >
-              {{
-                $t(
-                  "Students will be able to freely enter text to answer this question."
-                )
-              }}
+              {{ $t("Students will be able to freely enter text to answer this question.") }}
             </div>
           </div>
 
@@ -186,10 +182,7 @@ export default {
       const quizId = this.$route.params.id;
 
       if (this.isNotExistRightAnswer()) {
-        return this.toastNotify(
-          this.$t("At least one correct answer must be chosen"),
-          "warning"
-        );
+        return this.toastNotify(this.$t("At least one correct answer must be chosen"), "warning");
       }
 
       this.isLoading = true;
@@ -271,11 +264,6 @@ export default {
     FormInput,
     Button,
     QuestionTypes,
-  },
-  metaInfo() {
-    return {
-      title: this.$t("Question.List"),
-    };
   },
 };
 </script>
