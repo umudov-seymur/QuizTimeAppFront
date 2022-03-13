@@ -14,8 +14,8 @@ export default class QuizService {
     return ApiClient.post("/quizzes", quiz).then(handleResponse);
   }
 
-  static updateQuiz(quiz) {
-    return ApiClient.put(`/quizzes/${quiz.id}`, quiz).then(handleResponse);
+  static updateQuiz(quizId, quiz) {
+    return ApiClient.put(`/quizzes/${quizId}`, quiz).then(handleResponse);
   }
 
   static deleteQuiz(quizId) {
