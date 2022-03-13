@@ -39,7 +39,7 @@
               d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
             ></path>
           </svg>
-          <span class="ml-1">Edit</span>
+          <span class="ml-1">Düzəliş et</span>
         </button>
         <button
           class="focus:shadow-outline-purple focus:outline-none mr-2 flex items-center justify-center w-8 h-8 text-sm font-semibold bg-white border border-solid border-gray-300 text-gray-600 hover:bg-gray-200 rounded white min-w-max relative transition-colors duration-200 ease-in-out has-tooltip"

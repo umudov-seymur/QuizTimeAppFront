@@ -1,15 +1,39 @@
 <template>
   <Container class="mb-auto">
-    <div class="my-12 w-full">
-      <div class="flex flex-col lg:flex-row items-start w-full">
-        <div class="question-types lg:w-2/4 w-full">
-          <p
-            class="md:mb-6 mb-4 text-sm uppercase text-dark-2 bg-white py-3 border shadow rounded font-semibold text-center"
+    <div class="my-4 lg:my-12 w-full">
+      <div class="flex flex-col-reverse lg:flex-row items-start w-full">
+        <div class="lg:w-2/4 w-full">
+          <div
+            class="flex bg-purple-light p-3 shadow-xl border-b-2 border-purple-600 rounded-t-xl items-center justify-between animate__animated animate__fadeInUp animate__faster"
           >
-            <span>+ {{ $t("Question.Add") }}</span>
-          </p>
+            <div class="flex items-center text-white">
+              <font-awesome-icon icon="fas-solid fa-plus" />
+              <span class="ml-1">{{ $t("Question.Add") }}</span>
+            </div>
+            <div class="flex space-x-2">
+              <button
+                class="flex items-center space-x-1 justify-center px-3 py-2 text-xs shadow-md border-purple-500 bg-purple-600 focus:shadow-outline-purple focus:outline-none text-white font-semibold h-8 rounded relative transition-colors duration-200 ease-in-out"
+              >
+                <span class="uppercase">Sual sayı</span> :
+                {{ questions.length }}
+              </button>
 
-          <QuestionTypes class="sticky top-0 z-10 shadow-lg" />
+              <button
+                aria-label="Hide answers"
+                @click="isShowAnswer = !isShowAnswer"
+                class="flex items-center space-x-1 justify-center px-3 py-2 text-xs shadow-md border-purple-500 bg-purple-600 focus:shadow-outline-purple focus:outline-none text-white font-semibold h-8 rounded relative transition-colors duration-200 ease-in-out"
+              >
+                <DynamicIcon class="w-5 h-5" icon="eye" v-if="!isShowAnswer" />
+                <DynamicIcon class="w-5 h-5" icon="eye-off" v-else />
+
+                <span class="title hidden lg:block uppercase">
+                  {{ isShowAnswer ? "Cavablar gizlət" : "Cavabları göstər" }}
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <QuestionTypes class="sticky top-0 z-10 rounded-t-none shadow-xl" />
 
           <div v-if="!isLoading">
             <draggable
@@ -26,7 +50,7 @@
                 <QuestionItem
                   v-for="(question, index) in questions"
                   :question="question"
-                  @removeQuestion="removeQuestion"
+                  @removeQuestion="removeQuestion(question.id)"
                   :key="question.id"
                   :isShowAnswers="isShowAnswer"
                 >
@@ -51,85 +75,7 @@
             <QuestionLoader v-for="index in 3" :key="index" :isLoader="true" />
           </div>
         </div>
-
-        <div
-          class="ml-auto w-full lg:w-2/5 bg-white rounded-lg mt-8 lg:mt-0 shadow-xl border dark:bg-gray-800 sticky"
-          :style="{
-            top: '25px',
-          }"
-        >
-          <div class="p-4 bg-gray-200">
-            <div class="flex justify-between">
-              <p class="text-dark-2 font-semibold text-lg max-w-70">
-                Programming Quiz
-              </p>
-              <button
-                class="w-6 h-6 bg-light-3 border border-solid border-dark-6 rounded flex items-center justify-center texst-dark-2 mb-3"
-              >
-                <i
-                  class="flex items-center far fa-pen"
-                  style="font-size: 9px"
-                ></i>
-              </button>
-            </div>
-
-            <div class="flex items-center space-x-3">
-              <div class="flex items-center space-x-1 text-sm text-purple-700">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <span class="font-semibold">30 minutes</span>
-              </div>
-              <div class="flex items-center space-x-1 text-sm text-purple-700">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <span class="font-semibold">30 minutes</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="p-4">
-            <p class="text-gray-600 dark:text-gray-400">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga,
-              cum commodi a omnis numquam quod? Totam exercitationem quos hic
-              ipsam at qui cum numquam, sed amet ratione! Ratione, nihil
-              dolorum.
-            </p>
-
-            <button
-              aria-label="Hide answers"
-              @click="isShowAnswer = !isShowAnswer"
-              class="flex items-center mt-3 justify-center px-3 py-1 text-xs font-semibold h-6 bg-light-3 border border-solid border-dark-6 text-dark-2 hover:bg-light-2 active:bg-light-1 rounded white min-w-max relative transition-colors duration-200 ease-in-out flex"
-            >
-              <span class="title">
-                {{ isShowAnswer ? "Hide Answers" : "Show Answers" }} answers
-              </span>
-            </button>
-          </div>
-        </div>
+        <QuizDetail :quizId="quizId" />
       </div>
     </div>
     <AddQuestion />
@@ -141,16 +87,18 @@ import Container from "@/components/shared/Container";
 import QuestionItem from "@/components/pages/questions/QuestionItem";
 import QuestionTypes from "@/components/pages/questions/QuestionTypes";
 import AddQuestion from "@/components/pages/questions/AddQuestion";
-import QuestionLoader from "@/components/pages/questions/QuestionLoader.vue";
+import QuestionLoader from "@/components/pages/questions/QuestionLoader";
+import Draggable from "vuedraggable";
+import QuizCard from "@/components/pages/quiz/QuizCard";
+import QuizDetail from "@/components/pages/quiz/QuizDetail";
+import DynamicIcon from "@/components/shared/DynamicIcon";
 import { mapActions } from "vuex";
-import draggable from "vuedraggable";
 
 export default {
   name: "QuestionList",
   order: 1,
   data() {
     return {
-      isOpenQuestionModal: false,
       isShowAnswer: true,
       isLoading: true,
       drag: false,
@@ -162,25 +110,14 @@ export default {
       "fetchQuestionsByQuizId",
       "deleteQuestionByQuizId",
     ]),
-    toggleQuestionModal() {
-      this.isOpenQuestionModal = !this.isOpenQuestionModal;
-    },
     removeQuestion(questionId) {
-      this.$swal({
-        title: this.$t("Are you sure?"),
-        text: this.$t("You won't be able to revert this!"),
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: this.$t("Yes, delete it!"),
-        cancelButtonText: this.$t("Cancel"),
-      }).then((result) => {
-        if (!result.isConfirmed) return;
-
+      this.confirmationDelete(() => {
         this.deleteQuestionByQuizId({ quizId: this.quizId, questionId })
           .then(() => {
-            this.toastNotify(this.$t("Question deleted successfull"), "success");
+            this.toastNotify(
+              this.$t("Question deleted successfull"),
+              "success"
+            );
           })
           .catch((err) => {
             this.toastNotify(err.message, "error");
@@ -216,7 +153,7 @@ export default {
   created() {
     this.quizId = this.$route.params.id;
 
-    this.fetchQuestionsByQuizId(this.quizId).finally(() => {
+    this.fetchQuestionsByQuizId(this.quizId).then(() => {
       setTimeout(() => {
         this.isLoading = false;
       }, 1500);
@@ -228,7 +165,10 @@ export default {
     QuestionTypes,
     AddQuestion,
     QuestionLoader,
-    draggable,
+    Draggable,
+    QuizCard,
+    QuizDetail,
+    DynamicIcon,
   },
   metaInfo() {
     return {
