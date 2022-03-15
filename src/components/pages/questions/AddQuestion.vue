@@ -187,9 +187,8 @@ export default {
 
       this.isLoading = true;
 
-      this.addQuestionByQuizId({ quizId, question: this.question })
-        .then(async (response) => {
-          await this.saveAnswers(response);
+      this.addQuestionByQuizId({ quizId, question: this.question, answers: this.answers })
+        .then(() => {
           this.toastNotify(this.$t("Question added successfull"), "success");
           this.closeModal();
         })
@@ -203,14 +202,6 @@ export default {
         this.answers.findIndex((answer) => answer.isRightAnswer == true) == -1 &&
         this.questionType.isInput == true
       );
-    },
-    async saveAnswers(question) {
-      if (!this.questionType.isInput) return;
-
-      await this.addAnswersByQuestion({
-        question,
-        answers: this.answers,
-      });
     },
     getInitialAnswers() {
      return [

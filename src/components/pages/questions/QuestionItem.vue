@@ -39,9 +39,10 @@
               d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
             ></path>
           </svg>
-          <span class="ml-1">Düzəliş et</span>
+          <span class="ml-1">{{ $t("Edit") }}</span>
         </button>
         <button
+          @click="$emit('duplicateQuestion', question)"
           class="focus:shadow-outline-purple focus:outline-none mr-2 flex items-center justify-center w-8 h-8 text-sm font-semibold bg-white border border-solid border-gray-300 text-gray-600 hover:bg-gray-200 rounded white min-w-max relative transition-colors duration-200 ease-in-out has-tooltip"
         >
           <svg
@@ -79,16 +80,19 @@
       </div>
     </div>
     <div class="p-4 shadow-sm">
-      <div
-        class="flex space-x-1 items-center text-sm overflow-hidden text-dark-2"
-        :class="{
-          'mb-4': showAnswers,
-        }"
-      >
-        <span>Q.</span>
-        <span>{{ question.title }}</span>
+      <div class="flex justify-between">
+        <div
+          class="flex space-x-1 items-center text-sm overflow-hidden text-dark-2"
+          :class="{
+            'mb-4': showAnswers,
+          }"
+        >
+          <span>Q.</span>
+          <span>{{ question.title }}</span>
+        </div>
+        <Badge :text="`${question.weight} pts`" class="h-6 pl-4 pr-4 text-xs" color="indigo" />
       </div>
-      <div class="relative bg-gray-200 mb-4 h-px" v-if="showAnswers">
+      <div class="relative bg-gray-200 mb-4 mt-1 h-px" v-if="showAnswers">
         <span
           class="absolute px-2 text-sm ml-4 -translate-y-1/2 transform text-gray-500 bg-gray-100"
         >
@@ -138,44 +142,42 @@
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
+import Badge from "../../shared/Badge.vue";
 
 export default {
-  name: "QuestionItem",
-  props: {
-    isShowAnswers: {
-      type: Boolean,
-      default: true,
+    name: "QuestionItem",
+    props: {
+        isShowAnswers: {
+            type: Boolean,
+            default: true,
+        },
+        question: {
+            type: Object,
+            required: true,
+        },
     },
-    question: {
-      type: Object,
-      required: true,
+    methods: {
+        ...mapMutations("question", {
+            setIsSortQuestions: "setIsSortQuestions",
+        }),
+        toggleSortQuestions() {
+            this.setIsSortQuestions(!this.isSortQuestions);
+        }
     },
-  },
-  methods: {
-    ...mapMutations("question", {
-      setIsSortQuestions: "setIsSortQuestions",
-    }),
-    toggleSortQuestions() {
-      this.setIsSortQuestions(!this.isSortQuestions);
-    }
-  },
-  computed: {
-    ...mapGetters("question", {
-      types: "getQuestionTypes",
-      isSortQuestions: "getIsSortQuestions",
-    }),
-    questionType() {
-      const typeId = this.question.questionType;
-      const currentType = this.types.find((type) => type.id == typeId);
-
-      return {
-        icon: currentType.icon,
-        class: currentType.class,
-      };
+    computed: {
+        ...mapGetters("question", {
+            types: "getQuestionTypes",
+            isSortQuestions: "getIsSortQuestions",
+        }),
+        questionType() {
+            const typeId = this.question.questionType;
+            const currentType = this.types.find((type) => type.id == typeId);
+            return currentType;
+        },
+        showAnswers() {
+            return (this.question.answers.length > 0 && !this.isSortQuestions);
+        },
     },
-    showAnswers() {
-      return (this.question.answers.length > 0 && !this.isSortQuestions) || !this.isSortQuestions;
-    },
-  },
+    components: { Badge }
 };
 </script>

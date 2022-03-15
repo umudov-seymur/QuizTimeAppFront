@@ -30,7 +30,7 @@ export default {
         class: ["bg-yellow-400"],
       },
     ],
-    isSortQuestions : false,
+    isSortQuestions: false,
     selectedQuestionType: {},
   },
   getters: {
@@ -45,7 +45,7 @@ export default {
     },
     getIsSortQuestions(state) {
       return state.isSortQuestions;
-    }
+    },
   },
   mutations: {
     SET_QUESTIONS(state, questions) {
@@ -72,11 +72,9 @@ export default {
       state.isSortQuestions = status;
     },
     DELETE_QUESTION(state, id) {
-      const index = state.questions.findIndex(
-        (question) => question.id === id
-      );
+      const index = state.questions.findIndex((question) => question.id === id);
       state.questions.splice(index, 1);
-    }
+    },
   },
   actions: {
     fetchQuestionsByQuizId({ commit }, quizId) {
@@ -90,17 +88,24 @@ export default {
         }
       );
     },
-    addQuestionByQuizId({ commit }, { quizId, question }) {
+    addQuestionByQuizId({ commit, state }, { quizId, question, answers }) {
       return QuestionService.createQuestionByQuizId(quizId, question).then(
-        (response) => {
-          return Promise.resolve(response.data);
+        ({ data }) => {
+          if (question.questionType < 3) {
+            AnswerService.addAnswersByQuestionId(data.id, answers);
+            commit("SET_QUESTION", { question: data, answers });
+          } else {
+            commit("SET_QUESTION", { question: data });
+          }
+
+          return Promise.resolve(data);
         },
         (error) => {
           return Promise.reject(error.response.data);
         }
       );
     },
-    updateOrderQuestions({commit}, {quizId, orderedQuestion}) {
+    updateOrderQuestions({ commit }, { quizId, orderedQuestion }) {
       commit("SET_QUESTIONS", orderedQuestion);
       return QuestionService.updateOrderQuestions(quizId, orderedQuestion).then(
         (response) => {
@@ -111,11 +116,7 @@ export default {
         }
       );
     },
-    async addAnswersByQuestion({ commit }, payload) {
-      await AnswerService.addAnswersByQuestionId(payload.question.id, payload.answers);
-      commit("SET_QUESTION", payload);
-    },
-    deleteQuestionByQuizId({ commit }, {quizId, questionId}) {
+    deleteQuestionByQuizId({ commit }, { quizId, questionId }) {
       return QuestionService.deleteQuestionByQuizId(quizId, questionId).then(
         (response) => {
           commit("DELETE_QUESTION", questionId);

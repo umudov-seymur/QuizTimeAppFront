@@ -27,7 +27,7 @@
                 <DynamicIcon class="w-5 h-5" icon="eye-off" v-else />
 
                 <span class="title hidden lg:block uppercase">
-                  {{ isShowAnswer ? "Cavablar gizlət" : "Cavabları göstər" }}
+                  {{ isShowAnswer ? $t("Hide Answers") : $t("Show Answers") }}
                 </span>
               </button>
             </div>
@@ -50,6 +50,7 @@
                 <QuestionItem
                   v-for="(question, index) in questions"
                   :question="question"
+                  @duplicateQuestion="duplicateQuestion"
                   @removeQuestion="removeQuestion(question.id)"
                   :key="question.id"
                   :isShowAnswers="isShowAnswer"
@@ -75,9 +76,11 @@
             <QuestionLoader v-for="index in 3" :key="index" :isLoader="true" />
           </div>
         </div>
-        <QuizDetail :quizId="quizId" />
+        <QuizDetail :quizId="quizId" @print="isPrint = true" />
       </div>
     </div>
+
+    <QuizPrint v-if="isPrint" @closed="isPrint = false" />
     <AddQuestion />
   </Container>
 </template>
@@ -92,6 +95,7 @@ import Draggable from "vuedraggable";
 import QuizCard from "@/components/pages/quiz/QuizCard";
 import QuizDetail from "@/components/pages/quiz/QuizDetail";
 import DynamicIcon from "@/components/shared/DynamicIcon";
+import QuizPrint from "@/components/pages/quiz/QuizPrint.vue";
 import { mapActions } from "vuex";
 
 export default {
@@ -102,6 +106,7 @@ export default {
       isShowAnswer: true,
       isLoading: true,
       drag: false,
+      isPrint: false,
       quizId: "",
     };
   },
@@ -110,6 +115,19 @@ export default {
       "fetchQuestionsByQuizId",
       "deleteQuestionByQuizId",
     ]),
+    duplicateQuestion(question) {
+      this.$store.dispatch("question/addQuestionByQuizId", {
+        quizId: this.quizId,
+        question : question,
+        answers: question.answers,
+      })
+        .then(() => {
+          this.toastNotify(this.$t("A copy has been successfully created"), "success");
+        })
+        .catch((err) => {
+          this.toastNotify(err.message, "error");
+        })
+    },
     removeQuestion(questionId) {
       this.confirmationDelete(() => {
         this.deleteQuestionByQuizId({ quizId: this.quizId, questionId })
@@ -169,6 +187,7 @@ export default {
     QuizCard,
     QuizDetail,
     DynamicIcon,
+    QuizPrint,
   },
   metaInfo() {
     return {
