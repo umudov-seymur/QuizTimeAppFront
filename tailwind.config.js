@@ -173,6 +173,10 @@ module.exports = {
         '0': '0',
         xl: '36rem',
       },
+      screens: {
+        'print': {'raw': 'print'},
+        // => @media print { ... }
+      },
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
         quicksand: ["Quicksand"],

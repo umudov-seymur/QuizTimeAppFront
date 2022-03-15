@@ -1,12 +1,12 @@
 <template>
-  <div v-if="isOpen">
-    <transition
+   <transition
       enter-active-class="transition ease-out duration-500"
       enter-class="opacity-0"
       enter-to-class="opacity-100"
       leave-active-class="transition ease-in duration-500"
       leave-class="opacity-100"
       leave-to-class="opacity-0"
+      v-if="isOpen"
     >
       <div
         class="fixed inset-0 z-30 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center"
@@ -74,7 +74,6 @@
         </transition>
       </div>
     </transition>
-  </div>
 </template>
 
 <script>

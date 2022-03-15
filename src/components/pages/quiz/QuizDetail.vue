@@ -19,8 +19,11 @@
 
       <div class="flex">
         <button
+          @click="$emit('print')"
           class="focus:shadow-outline-indigo focus:outline-none mr-2 flex items-center justify-center w-8 h-8 text-sm font-semibold bg-purple-500 border border-purple-500 text-white hover:bg-purple-600 rounded-full white min-w-max relative transition-colors duration-200 ease-in-out has-tooltip"
-      >
+        >
+          <!-- <router-link :to="{ name: 'quizzes.print' }" v-if="!isLoading">
+          </router-link> -->
           <DynamicIcon icon="print" v-if="!isLoading" class="w-5 h-5" />
 
           <SkeletonLoader
@@ -30,6 +33,7 @@
           />
         </button>
         <button
+          @click="removeQuiz"
           class="focus:shadow-outline-indigo focus:outline-none mr-2 flex items-center justify-center w-8 h-8 text-sm font-semibold bg-purple-500 border border-purple-500 text-white hover:bg-purple-600 rounded-full white min-w-max relative transition-colors duration-200 ease-in-out has-tooltip"
         >
           <DynamicIcon icon="trash" v-if="!isLoading" class="w-5 h-5" />
@@ -121,6 +125,19 @@ export default {
           },
         },
       ];
+    },
+    removeQuiz() {
+      this.confirmationDelete(() => {
+        this.$store
+          .dispatch("quiz/deleteQuiz", this.quizId)
+          .then(() => {
+            this.toastNotify(this.$t("Quiz deleted successfull"), "success");
+            this.$router.push({ name: "quizzes" });
+          })
+          .catch((err) => {
+            this.toastNotify(err.message, "error");
+          });
+      });
     },
   },
   computed: {

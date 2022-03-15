@@ -10,6 +10,7 @@ import "@/plugins/sweetAlert";
 import "@/plugins/fontAwesome";
 import "@/plugins/vueMoment";
 import "@/plugins/vuePopover";
+import "@/plugins/toggleButton";
 
 // global mixins
 import "@/mixins/toastrMixin";
