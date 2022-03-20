@@ -1,81 +1,84 @@
 <template>
-  <Container class="mb-auto">
-    <div class="w-full pb-16 pt-8">
-      <div class="w-full overflow-hidden rounded-lg shadow-xl">
-        <div
-          class="flex justify-between pl-4 text-sm font-semibold tracking-wide text-white uppercase border-b dark:border-gray-700 bg-purple-500 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800"
-        >
-          <span class="flex items-center col-span-3 font-quicksand">
-            {{ $t("Quizzes") }}
-          </span>
-
-          <Button
-            @click="createModal"
-            class="uppercase"
-            :colors="[
-              'text-white',
-              'bg-green-600',
-              'hover:bg-green-700',
-              'active:bg-green-600',
-              'focus:shadow-outline-green',
-              'py-3',
-              'rounded-t-none rounded-b-none',
-            ]"
+  <Layout name="Default">
+    <Container class="mb-auto">
+      <div class="w-full pb-16 pt-8">
+        <div class="w-full overflow-hidden rounded-lg shadow-xl">
+          <div
+            class="flex justify-between pl-4 text-sm font-semibold tracking-wide text-white uppercase border-b dark:border-gray-700 bg-purple-500 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800"
           >
-            <font-awesome-icon icon="fa-solid fa-plus" />
-            <span class="ml-2 font-quicksand">{{ $t("Create") }}</span>
-          </Button>
-        </div>
+            <span class="flex items-center col-span-3 font-quicksand">
+              {{ $t("Quizzes") }}
+            </span>
 
-        <div class="w-full overflow-x-auto">
-          <TableLoader :rowCount="8" :size="5" v-if="isLoading" />
-
-          <table class="w-full whitespace-no-wrap" v-else>
-            <thead>
-              <tr
-                class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
-              >
-                <th class="px-4 py-3">{{ $t("Quiz.Name") }}</th>
-                <th class="px-4 py-3">{{ $t("Category") }}</th>
-                <th class="px-4 py-3">{{ $t("Quiz.Timer") }}</th>
-                <th class="px-4 py-3">{{ $t("Quiz.Password") }}</th>
-                <th class="px-4 py-3">{{ $t("Created At") }}</th>
-                <th class="px-4 py-3">{{ $t("Actions") }}</th>
-              </tr>
-            </thead>
-            <tbody
-              class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+            <Button
+              @click="createModal"
+              class="uppercase"
+              :colors="[
+                'text-white',
+                'bg-green-600',
+                'hover:bg-green-700',
+                'active:bg-green-600',
+                'focus:shadow-outline-green',
+                'py-3',
+                'rounded-t-none rounded-b-none',
+              ]"
             >
-              <tr v-if="quizzes.length <= 0">
-                <td colspan="6" class="text-center py-4">
-                  {{ $t("Not Found Result") }}
-                </td>
-              </tr>
+              <font-awesome-icon icon="fa-solid fa-plus" />
+              <span class="ml-2 font-quicksand">{{ $t("Create") }}</span>
+            </Button>
+          </div>
 
-              <QuizItem
-                v-for="quiz in quizzes"
-                :key="quiz.id"
-                :quiz="quiz"
-                @updated="updateModal"
-                @removed="removeQuiz"
-              />
-            </tbody>
-          </table>
+          <div class="w-full overflow-x-auto">
+            <TableLoader :rowCount="8" :size="5" v-if="isLoading" />
+
+            <table class="w-full whitespace-no-wrap" v-else>
+              <thead>
+                <tr
+                  class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+                >
+                  <th class="px-4 py-3">{{ $t("Quiz.Name") }}</th>
+                  <th class="px-4 py-3">{{ $t("Category") }}</th>
+                  <th class="px-4 py-3">{{ $t("Quiz.Timer") }}</th>
+                  <th class="px-4 py-3">{{ $t("Quiz.Password") }}</th>
+                  <th class="px-4 py-3">{{ $t("Created At") }}</th>
+                  <th class="px-4 py-3">{{ $t("Actions") }}</th>
+                </tr>
+              </thead>
+              <tbody
+                class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+              >
+                <tr v-if="quizzes.length <= 0">
+                  <td colspan="6" class="text-center py-4">
+                    {{ $t("Not Found Result") }}
+                  </td>
+                </tr>
+
+                <QuizItem
+                  v-for="quiz in quizzes"
+                  :key="quiz.id"
+                  :quiz="quiz"
+                  @updated="updateModal"
+                  @removed="removeQuiz"
+                />
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-    </div>
 
-    <QuizModal
-      v-if="$store.state.quiz.isOpenModal"
-      :quiz="quiz"
-      :title="modalTitle"
-      :isLoading="isModalLoading"
-      @saved="saveQuiz"
-    />
-  </Container>
+      <QuizModal
+        v-if="$store.state.quiz.isOpenModal"
+        :quiz="quiz"
+        :title="modalTitle"
+        :isLoading="isModalLoading"
+        @saved="saveQuiz"
+      />
+    </Container>
+  </Layout>
 </template>
 
 <script>
+import Layout from "@/components/shared/Layout";
 import Container from "@/components/shared/Container";
 import Button from "@/components/shared/Button";
 import TableLoader from "@/components/shared/TableLoader";
@@ -89,7 +92,7 @@ export default {
   data() {
     return {
       isLoading: true,
-      isModalLoading : false,
+      isModalLoading: false,
       mode: "",
       quiz: {},
     };
@@ -171,7 +174,7 @@ export default {
     },
     toggleModal() {
       this.$store.commit("quiz/TOGGLE_QUIZ_MODAL");
-    }
+    },
   },
   computed: {
     ...mapGetters("quiz", {
@@ -195,6 +198,7 @@ export default {
     };
   },
   components: {
+    Layout,
     Container,
     Button,
     TableLoader,

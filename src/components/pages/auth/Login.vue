@@ -36,16 +36,11 @@
 
     <p class="mt-4">
       <router-link
-        class="
-          text-sm
-          font-medium
-          text-purple-600
-          dark:text-purple-400
-          hover:underline
-        "
+        class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
         :to="{ name: 'register' }"
-        >{{ $t("Create Account") }}</router-link
       >
+        {{ $t("Create Account") }}
+      </router-link>
     </p>
   </ValidationObserver>
 </template>
