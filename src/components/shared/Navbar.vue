@@ -138,18 +138,7 @@
           </router-link>
         </li>
         <li>
-          <div class="hidden relative lg:flex items-center md:mr-0">
-            <input
-              type="text"
-              class="block p-2 text-sm form-input dark:text-gray-300 dark:bg-gray-700 focus:outline-none w-full dark:border-gray-600 focus:border-purple-400 focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-              placeholder="Quiz şifrəsi"
-            />
-            <button
-              class="flex cursor-pointer absolute inset-y-0 focus:outline-none right-0 items-center rounded-tr-sm rounded-br bg-purple-500 hover:bg-purple-400 text-white font-bold p-3"
-            >
-              {{ $t("Join") }}
-            </button>
-          </div>
+         <QuizJoinInput/>
         </li>
       </ul>
     </Container>
@@ -157,12 +146,13 @@
 </template>
 
 <script>
-import Container from "@/components/shared/Container.vue";
-import NavLink from "@/components/shared/NavLink.vue";
+import Container from "@/components/shared/Container";
+import NavLink from "@/components/shared/NavLink";
+import QuizJoinInput from "@/components/pages/quiz/QuizJoinInput";
 
 export default {
   name: "Navbar",
-  components: { Container, NavLink },
+  components: { Container, NavLink, QuizJoinInput },
 };
 </script>
 

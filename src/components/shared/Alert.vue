@@ -7,7 +7,7 @@
   >
     <strong class="font-bold" v-if="title.length > 0">{{ title }}</strong>
     <span class="block sm:inline">{{ body }}</span>
-    <span class="absolute top-0 bottom-0 right-0 px-4 py-3" @click="$emit('dismiss', true)">
+    <span class="absolute top-0 bottom-0 right-0 px-4 py-3" v-if="isDismiss" @click="$emit('dismiss', true)">
       <svg
         class="fill-current h-6 w-6 text-red-500"
         role="button"
@@ -46,6 +46,10 @@ export default {
     title: {
       type: String,
       default: "",
+    },
+    isDismiss: {
+      type: Boolean,
+      default: true,
     },
     body: {
       type: String,

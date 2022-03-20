@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     quizTimer(timer) {
-      return timer ? `${timer} ${this.$t("Minute")}` : "vaxtsız";
+      return timer ? `${timer} ${this.$t("Minute")}` : this.$t("Indefinitely");
     },
   },
   components: { Badge },

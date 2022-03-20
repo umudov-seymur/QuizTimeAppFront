@@ -2,7 +2,7 @@
   <div
     class="flex flex-col mt-6 border border-gray-300 rounded-lg overflow-hidden shadow-md bg-white question-details-card my-2"
     :class="{
-      'cursor-move' : isSortQuestions
+      'cursor-move': isSortQuestions,
     }"
   >
     <div class="p-2 bg-gray-50 flex items-center justify-between">
@@ -90,13 +90,17 @@
           <span>Q.</span>
           <span>{{ question.title }}</span>
         </div>
-        <Badge :text="`${question.weight} pts`" class="h-6 pl-4 pr-4 text-xs" color="indigo" />
+        <Badge
+          :text="`${question.weight} pts`"
+          class="h-6 pl-4 pr-4 text-xs"
+          color="indigo"
+        />
       </div>
       <div class="relative bg-gray-200 mb-4 mt-1 h-px" v-if="showAnswers">
         <span
           class="absolute px-2 text-sm ml-4 -translate-y-1/2 transform text-gray-500 bg-gray-100"
         >
-          {{ $t('Answer choices') }}
+          {{ $t("Answer choices") }}
         </span>
       </div>
       <div class="flex flex-wrap" v-if="showAnswers">
@@ -142,42 +146,42 @@
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
-import Badge from "../../shared/Badge.vue";
+import Badge from "@/components/shared/Badge";
 
 export default {
-    name: "QuestionItem",
-    props: {
-        isShowAnswers: {
-            type: Boolean,
-            default: true,
-        },
-        question: {
-            type: Object,
-            required: true,
-        },
+  name: "QuestionItem",
+  props: {
+    isShowAnswers: {
+      type: Boolean,
+      default: true,
     },
-    methods: {
-        ...mapMutations("question", {
-            setIsSortQuestions: "setIsSortQuestions",
-        }),
-        toggleSortQuestions() {
-            this.setIsSortQuestions(!this.isSortQuestions);
-        }
+    question: {
+      type: Object,
+      required: true,
     },
-    computed: {
-        ...mapGetters("question", {
-            types: "getQuestionTypes",
-            isSortQuestions: "getIsSortQuestions",
-        }),
-        questionType() {
-            const typeId = this.question.questionType;
-            const currentType = this.types.find((type) => type.id == typeId);
-            return currentType;
-        },
-        showAnswers() {
-            return (this.question.answers.length > 0 && !this.isSortQuestions);
-        },
+  },
+  methods: {
+    ...mapMutations("question", {
+      setIsSortQuestions: "setIsSortQuestions",
+    }),
+    toggleSortQuestions() {
+      this.setIsSortQuestions(!this.isSortQuestions);
     },
-    components: { Badge }
+  },
+  computed: {
+    ...mapGetters("question", {
+      types: "getQuestionTypes",
+      isSortQuestions: "getIsSortQuestions",
+    }),
+    questionType() {
+      const typeId = this.question.questionType;
+      const currentType = this.types.find((type) => type.id == typeId);
+      return currentType;
+    },
+    showAnswers() {
+      return this.question.answers.length > 0 && !this.isSortQuestions;
+    },
+  },
+  components: { Badge },
 };
 </script>

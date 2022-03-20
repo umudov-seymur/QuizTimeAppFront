@@ -1,9 +1,6 @@
 <template>
   <div
-    class="w-full lg:w-2/5 ml-auto mb-12 lg:mb-0 relative overflow-hidden lg:sticky bg-white rounded-xl shadow-lg"
-    :style="{
-      top: '25px',
-    }"
+    class="overflow-hidden bg-white rounded-xl shadow-lg"
   >
     <div
       class="flex justify-between items-center p-4 border-b bg-gradient-to-r from-purple-600 to-purple-300"
@@ -69,16 +66,22 @@ import DynamicIcon from "@/components/shared/DynamicIcon.vue";
 export default {
   name: "QuizDetail",
   props: {
-    quizId: {
-      type: String,
-      required: true,
+    quiz: {
+      type: Object,
+      default: () => ({
+        title : "",
+        content : "",
+        timer: ""
+      })
+    },
+    isLoading: {
+      type: Boolean,
+      default: true,
     },
   },
   data() {
     return {
-      cards: [],
-      quiz: {},
-      isLoading: true,
+      cards: []
     };
   },
   methods: {
@@ -106,7 +109,7 @@ export default {
         },
         {
           title: this.$t("Category"),
-          content: this.quiz.category.name,
+          content: this.quiz.category ? this.quiz.category.name : "",
           icon: "category",
           color: "indigo",
           loader: {
@@ -129,7 +132,7 @@ export default {
     removeQuiz() {
       this.confirmationDelete(() => {
         this.$store
-          .dispatch("quiz/deleteQuiz", this.quizId)
+          .dispatch("quiz/deleteQuiz", this.quiz.id)
           .then(() => {
             this.toastNotify(this.$t("Quiz deleted successfull"), "success");
             this.$router.push({ name: "quizzes" });
@@ -158,12 +161,12 @@ export default {
         this.cards[this.cards.length - 1].content = score;
       }
     },
+    quiz() {
+      this.setCards();
+    }
   },
-  async created() {
-    this.quiz = await this.$store.dispatch("quiz/fetchQuizById", this.quizId);
+  created() {
     this.setCards();
-
-    setTimeout(() => (this.isLoading = false), 1500);
   },
   components: { SkeletonLoader, QuizCard, DynamicIcon },
 };
