@@ -11,6 +11,7 @@ import "@/plugins/fontAwesome";
 import "@/plugins/vueMoment";
 import "@/plugins/vuePopover";
 import "@/plugins/toggleButton";
+import "@/plugins/vueCountDown";
 
 // global mixins
 import "@/mixins/toastrMixin";

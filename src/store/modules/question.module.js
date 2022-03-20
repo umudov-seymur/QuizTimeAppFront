@@ -88,7 +88,7 @@ export default {
         }
       );
     },
-    addQuestionByQuizId({ commit, state }, { quizId, question, answers }) {
+    addQuestionByQuizId({ commit }, { quizId, question, answers }) {
       return QuestionService.createQuestionByQuizId(quizId, question).then(
         ({ data }) => {
           if (question.questionType < 3) {

@@ -22,7 +22,7 @@ const router = new Router({
     },
     {
       path: "/auth",
-      component: () => import("@/components/layouts/AuthLayout"),
+      component: () => import("@/layouts/AuthLayout"),
       children: [
         {
           path: "login",
@@ -49,10 +49,29 @@ const router = new Router({
       component: () => import("@/components/pages/questions/QuestionList"),
     },
     {
+      path: "/quiz/join/:quizPassword",
+      name: "quiz.join",
+      meta: { authorize: [Role.Teacher, Role.Student] },
+      component: () => import("@/components/pages/exam/QuizJoin"),
+    },
+    {
       path: "/quizzes/:id/print",
       name: "quizzes.print",
       meta: { authorize: [Role.Teacher] },
       component: () => import("@/components/pages/quiz/QuizPrint"),
+    },
+    {
+      path: "/code/:quizPassword",
+      name: "exam",
+      meta: { authorize: [Role.Teacher, Role.Student] },
+      component: () => import("@/layouts/ExamLayout"),
+      children: [
+        {
+          path: ":questionId",
+          component: () => import("@/components/pages/exam/ExamQuestion"),
+          name: "exam.question",
+        }
+      ],
     },
     {
       path: "/categories",
