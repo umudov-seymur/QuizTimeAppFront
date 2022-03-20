@@ -10,12 +10,20 @@ export default class QuizService {
     return ApiClient.get(`/quizzes/${quizId}`).then(handleResponse);
   }
 
+  static getQuizByPassword(password) {
+    return ApiClient.get(`/quizzes/${password}`).then(handleResponse);
+  }
+
   static createQuiz(quiz) {
     return ApiClient.post("/quizzes", quiz).then(handleResponse);
   }
 
   static updateQuiz(quizId, quiz) {
     return ApiClient.put(`/quizzes/${quizId}`, quiz).then(handleResponse);
+  }
+
+  static updateSettingsByQuizId(quizId, settings) {
+    return ApiClient.put(`/quizzes/${quizId}/settings`, settings).then(handleResponse);
   }
 
   static deleteQuiz(quizId) {

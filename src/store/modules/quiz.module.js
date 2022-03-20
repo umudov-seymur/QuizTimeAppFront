@@ -58,6 +58,16 @@ export default {
         }
       );
     },
+    fetchQuizByPassword({ commit }, password) {
+      return QuizService.getQuizByPassword(password).then(
+        (response) => {
+          return Promise.resolve(response.data);
+        },
+        (error) => {
+          return Promise.reject(error.response.data);
+        }
+      );
+    },
     addQuiz({ commit }, quiz) {
       return QuizService.createQuiz(quiz).then(
         ({ data }) => {
@@ -73,6 +83,16 @@ export default {
       return QuizService.updateQuiz(quizId, quiz).then(
         ({ data }) => {
           commit("UPDATE_QUIZ", data);
+          return Promise.resolve(data);
+        },
+        (error) => {
+          return Promise.reject(error.response.data);
+        }
+      );
+    },
+    updateSettingsByQuizId({ commit }, { quizId, settings }) {
+      return QuizService.updateSettingsByQuizId(quizId, settings).then(
+        ({ data }) => {
           return Promise.resolve(data);
         },
         (error) => {
