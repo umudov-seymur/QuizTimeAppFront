@@ -14,8 +14,13 @@ export default {
         "text-lg": "L",
         "text-xl": "XL",
       },
-      quiz: {},
     };
+  },
+  props: {
+    quiz: {
+      type: Object,
+      required: true
+    },
   },
   methods: {
     checkTypeIsInput(typeId) {
@@ -61,11 +66,6 @@ export default {
           .filter((x) => x.isRight == true)
       );
     },
-  },
-  created() {
-    this.$store
-      .dispatch("quiz/fetchQuizById", this.$route.params.id)
-      .then((quiz) => (this.quiz = quiz));
   },
 };
 </script>
