@@ -25,11 +25,13 @@
 	"Edit Quiz": "Quizi düzəliş et",
 	"Edit": "Düzəliş et",
 	"Email": "Email",
+	"Fullname": "Ad, Soyad",
 	"FirstName": "Ad",
 	"Font": "Şrift",
 	"Hide Answers": "Cavabları gizlət",
 	"Home": "Ana səhifə",
 	"If you do not want to set a time, leave it blank": "Əgər vaxtın təyin olunmasını istəmirsinizsə boş buraxın",
+	"Indefinitely" : "Müddətsiz",
 	"Join": "Qoşul",
 	"LastName": "Soyad",
 	"Log in": "Daxil ol",
@@ -53,12 +55,13 @@
 		"Title": "Sual",
 		"Weight": "Bal (pts)"
 	},
+	"Questions Count" : "Sualların sayı",
 	"Quiz deleted successfull": "Quiz uğurla silindi.",
 	"Quiz saved successfull": "Quiz uğurla yadda saxlanıldı.",
 	"Quiz": {
 		"Name": "Quiz adı",
 		"Password": "Quiz şifrəsi",
-		"Timer": "Quiz bitmə vaxtı"
+		"Timer": "Quiz müddəti"
 	},
 	"Quizzes Count": "Quizlərin sayı",
 	"Quizzes": "Quizlər",
@@ -69,7 +72,10 @@
 		"Teacher": "Müəllim"
 	},
 	"Save": "Yadda saxla",
+	"Status": "Status",
+	"Start": "Başla",
 	"Settings": "Hesab Parametrləri",
+	"Submit": "Göndər",
 	"Show Answers": "Cavabları göstər",
 	"Show answer options": "Cavab seçimlərini göstər",
 	"Shuffle answers": "Cavabları qarışdır",
@@ -78,5 +84,11 @@
 	"Single Choice": "Tək seçim",
 	"Students will be able to freely enter text to answer this question.": "Tələbələr bu suala cavab vermək üçün sərbəst şəkildə mətn daxil edə biləcəklər.",
 	"Yes, delete it!": "Bəli, silin!",
-	"You won't be able to revert this!": "Bunu geri qaytara bilməyəcəksiniz!"
+	"You won't be able to revert this!": "Bunu geri qaytara bilməyəcəksiniz!",
+	"Timer" : {
+		"Hours" : "Saat",
+		"Minutes" : "Dəq",
+		"Seconds" : "San",
+		"Days" : "Gün" 
+	}
 }
